@@ -56,6 +56,7 @@
 
     <!--- Inject Part-->
     
+        
     <script id="hexo-configurations">
     let Global = window.Global || {};
     Global.hexo_config = {"hostname":"xxiaomin.github.io","root":"/","language":"zh-CN"};
@@ -299,31 +300,27 @@
         
         
         
-            <div id="start_div" style="display:none">
-                2022/8/17 11:45:14
-            </div>
-            <div>
-                博客已运行 <span class="odometer" id="runtime_days" ></span> 天 <span class="odometer" id="runtime_hours"></span> 小时 <span class="odometer" id="runtime_minutes"></span> 分钟 <span class="odometer" id="runtime_seconds"></span> 秒
-            </div>
         
         
         
-            <script async data-pjax>
-                try {
-                    function odometer_init() {
-                    const elements = document.querySelectorAll('.odometer');
-                    elements.forEach(el => {
-                        new Odometer({
-                            el,
-                            format: '( ddd).dd',
-                            duration: 200
-                        });
-                    });
-                    }
-                    odometer_init();
-                } catch (error) {}
-            </script>
+            
+                
+
+                    
+                        <script data-pjax type="text/javascript" src="http://libs.baidu.com/jquery/1.8.3/jquery.js"></script>
+                    
         
+                
+
+                    
+                        <script data-pjax type="text/javascript" src="http://libs.baidu.com/jquery/1.8.3/jquery.min.js"></script>
+                    
+        
+                
+
+                    
+                        <script data-pjax type="text/javascript" src="/source/js/snow.js"></script>
+                    
         
         
     </div>  
@@ -416,16 +413,6 @@
 
 
 
-    
-<script src="/js/tools/runtime.js"></script>
-
-    
-<script src="/js/layouts/odometer.min.js"></script>
-
-    
-<link rel="stylesheet" href="/assets/odometer-theme-minimal.css">
-
-
 
 
   
@@ -481,5 +468,15 @@
 
 
 
-</body>
+<script type="text/javascript" src="http://apps.bdimg.com/libs/jquery/1.7.2/jquery.min.js"></script>
+<script type="text/javascript" src="/js/snow.js"></script>
+<div class="snow-container"></div>
+<!-- <script type="text/javascript" src="//libs.baidu.com/jquery/1.8.3/jquery.min.js"></script>
+<script type="text/javascript">
+    var windowWidth = $(window).width();
+    if (windowWidth > 180) {
+      document.write('<script type="text/javascript" src="/js/leave.js"><\/script>');
+    }
+  </script> -->
+<script src="/live2dw/lib/L2Dwidget.min.js?094cbace49a39548bed64abff5988b05"></script><script>L2Dwidget.init({"pluginModelPath":"assets/","model":{"jsonPath":"/live2dw/assets/hijiki.model.json"},"display":{"position":"left","width":210,"height":360,"hOffset":80,"vOffset":-50},"mobile":{"show":false},"log":false,"pluginJsPath":"lib/","pluginRootPath":"live2dw/","tagMode":false});</script></body>
 </html>
