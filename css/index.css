@@ -6192,3 +6192,10 @@ blockquote.pullquote.right {
 .read-mode #article-container .note .note-icon {
   color: var(--font-color);
 }
+avatar-img img{
+  transition: all 2s;
+}
+avatar-img:hover  img{
+  transform: rotate(365deg);
+  cursor: pointer;
+}
