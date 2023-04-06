@@ -1,0 +1,415 @@
+.waikuan {
+  margin: 0 auto;
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  width: 53.33333333rem;
+  height: 93.33333333rem;
+  background-color: #fff;
+  box-shadow: 0 0 15px gray;
+}
+.waikuan .middleshang {
+  border-top: 0.2rem solid #154864;
+  display: flex;
+  flex: 1;
+  flex-direction: column;
+}
+.waikuan .middleshang .headshang {
+  margin: 0 auto;
+  display: flex;
+  flex: 0.2;
+}
+.waikuan .middleshang .headshang .headbox1 {
+  border-right: 0 solid transparent;
+  border-left: 1rem solid transparent;
+  border-top: 1rem solid #154864;
+}
+.waikuan .middleshang .headshang .headbox2 {
+  width: 16rem;
+  background-color: #154864;
+  border-right: 5px solid transparent;
+}
+.waikuan .middleshang .headshang .headbox3 {
+  border-right: 1rem solid transparent;
+  border-left: 0 solid transparent;
+  border-top: 1rem solid #154864;
+}
+.waikuan .middleshang .headxia {
+  display: flex;
+  flex: 5.2;
+}
+.waikuan .middleshang .headxia .hxleft {
+  display: flex;
+  flex: 3;
+}
+.waikuan .middleshang .headxia .hxleft .xinxi {
+  flex-direction: column;
+  display: flex;
+  flex: 1;
+}
+.waikuan .middleshang .headxia .hxleft .xinxis {
+  display: flex;
+  flex: 1;
+}
+.waikuan .middleshang .headxia .hxleft .xinxis span {
+  padding-top: 0.53333333rem;
+  line-height: 4.26666667rem;
+  font-weight: bolder;
+}
+.waikuan .middleshang .headxia .hxleft .xinxis .minzi {
+  color: #154864;
+  padding-left: 2.66666667rem;
+  font-size: 2.66666667rem;
+}
+.waikuan .middleshang .headxia .hxleft .xinxis .gangwei {
+  color: #154864;
+  padding-top: 0.8rem;
+  font-size: 1.33333333rem;
+  padding-left: 6.66666667rem;
+}
+.waikuan .middleshang .headxia .hxleft .xinxis .gangwei2 {
+  padding-left: 0.53333333rem;
+  padding-top: 0.96rem;
+}
+.waikuan .middleshang .headxia .hxleft .xinxix {
+  display: flex;
+  flex: 2;
+  flex-direction: column;
+}
+.waikuan .middleshang .headxia .hxleft .xinxix a {
+  display: flex;
+  flex: 1;
+  color: #000;
+}
+.waikuan .middleshang .headxia .hxleft .xinxix .xxshang {
+  align-items: center;
+}
+.waikuan .middleshang .headxia .hxleft .xinxix img {
+  border-radius: 0.5rem;
+  margin-left: 2.66666667rem;
+  background-color: #154864;
+  width: 2.13333333rem;
+  height: 2.13333333rem;
+}
+.waikuan .middleshang .headxia .hxleft .xinxix span:nth-of-type(2n-1) {
+  font-weight: bolder;
+  font-size: 1.33333333rem;
+  margin-left: 0.8rem;
+  margin-right: 0.8rem;
+}
+.waikuan .middleshang .headxia .hxleft .xinxix span:nth-of-type(2n) {
+  margin-top: 0.4rem;
+  font-weight: bolder;
+}
+.waikuan .middleshang .headxia .hxleft .xinxix .one2 {
+  margin-left: 8rem;
+}
+.waikuan .middleshang .headxia .hxleft .xinxix .one4 {
+  margin-left: 5.33333333rem;
+}
+.waikuan .middleshang .headxia .hxright {
+  padding-left: 0.26666667rem;
+  display: flex;
+  flex: 1;
+}
+.waikuan .middleshang .headxia .hxright .touxiang {
+  background-color: blue;
+  width: 10.66666667rem;
+  height: 13.33333333rem;
+  background-size: 10.66666667rem;
+  background-image: url('../images/touxiang.jpg');
+}
+.waikuan .middlebody {
+  margin-left: 1.06666667rem;
+  margin-right: 1.06666667rem;
+  display: flex;
+  flex: 5;
+  flex-direction: column;
+  background-color: #fff;
+}
+.waikuan .middlebody ul {
+  flex-direction: column;
+  display: flex;
+  flex: 1;
+}
+.waikuan .middlebody li {
+  display: flex;
+  flex: 1;
+}
+.waikuan .middlebody .eda {
+  padding-bottom: 0.53333333rem;
+  display: flex;
+  flex: 1.5;
+}
+.waikuan .middlebody .eda .bodyxia {
+  display: flex;
+  flex: 4;
+  background-color: #fff;
+}
+.waikuan .middlebody .eda .bdleft {
+  display: flex;
+  flex: 1;
+  background-color: #fff;
+}
+.waikuan .middlebody .eda .bdleft .box1 {
+  width: 2.66666667rem;
+  background-color: #154864;
+}
+.waikuan .middlebody .eda .bdleft .box2 {
+  margin-left: 0.53333333rem;
+  border-right: 1.8rem solid transparent;
+  border-left: 0 solid transparent;
+  border-top: 2.4rem solid #fff;
+  background-color: #154864;
+}
+.waikuan .middlebody .eda .bdleft .box3 {
+  color: #fff;
+  padding-top: 0.26666667rem;
+  font-weight: bolder;
+  text-align: center;
+  width: 6.66666667rem;
+  font-size: 1.33333333rem;
+  background-color: #154864;
+}
+.waikuan .middlebody .eda .bdleft .box4 {
+  border-right: 0 solid transparent;
+  border-left: 1.8rem solid transparent;
+  border-bottom: 2.3rem solid #fff;
+  background-color: #154864;
+}
+.waikuan .middlebody .eda .bdright {
+  display: flex;
+  flex: 3;
+  border-top: 0.25rem solid #154864;
+  background-color: #fff;
+}
+.waikuan .middlebody .eda .bodyxia span {
+  padding-right: 5.81333333rem;
+  padding-top: 0.53333333rem;
+  font-size: 1.33333333rem;
+  font-weight: bolder;
+  color: #154864;
+}
+.waikuan .middlebody .eda .bodyxia .bdxx3 {
+  padding-right: 0;
+}
+.waikuan .middlebody .eda .bodyxia li {
+  padding-bottom: 0.26666667rem;
+  font-weight: bolder;
+}
+.waikuan .middlebody .eda .bodyxia li:nth-of-type(2) {
+  padding-top: 0.53333333rem;
+}
+.waikuan .middlebody .skils {
+  display: flex;
+  flex: 3;
+}
+.waikuan .middlebody .skils .bodyshang {
+  display: flex;
+  flex: 1;
+}
+.waikuan .middlebody .skils .bodyshang .bdleft {
+  display: flex;
+  flex: 1;
+  background-color: #fff;
+}
+.waikuan .middlebody .skils .bodyshang .bdleft .box1 {
+  width: 2.66666667rem;
+  background-color: #154864;
+}
+.waikuan .middlebody .skils .bodyshang .bdleft .box2 {
+  margin-left: 0.53333333rem;
+  border-right: 1.8rem solid transparent;
+  border-left: 0 solid transparent;
+  border-top: 2.4rem solid #fff;
+  background-color: #154864;
+}
+.waikuan .middlebody .skils .bodyshang .bdleft .box3 {
+  color: #fff;
+  padding-top: 0.26666667rem;
+  font-weight: bolder;
+  text-align: center;
+  width: 6.66666667rem;
+  font-size: 1.33333333rem;
+  background-color: #154864;
+}
+.waikuan .middlebody .skils .bodyshang .bdleft .box4 {
+  border-right: 0 solid transparent;
+  border-left: 1.8rem solid transparent;
+  border-bottom: 2.3rem solid #fff;
+  background-color: #154864;
+}
+.waikuan .middlebody .skils .bodyshang .bdright {
+  display: flex;
+  flex: 3;
+  border-top: 0.25rem solid #154864;
+  background-color: #fff;
+}
+.waikuan .middlebody .skils .bodyxia {
+  display: flex;
+  flex: 8;
+  flex-direction: column;
+  background-color: #fff;
+}
+.waikuan .middlebody .skils .bodyxia a {
+  font-weight: bolder;
+  color: #000;
+  padding-top: 0.53333333rem;
+  display: flex;
+  flex: 1;
+}
+.waikuan .middlebody .skils .bodyxia a .sanjiao {
+  padding-right: 1.06666667rem;
+  border-top: 1.3rem solid transparent;
+  border-left: 1.5rem solid #154864;
+  border-bottom: 1.3rem solid transparent;
+}
+.waikuan .middlebody .skils .bodyxia a .skilsxx2 {
+  padding-top: 0.66666667rem;
+}
+.waikuan .middlebody .skils .bodyxia a .skilsxx3 {
+  padding-top: 0;
+}
+.waikuan .middlebody .skils .bodyxia a .skilsxx6 {
+  padding-top: 0;
+}
+.waikuan .middlebody .school {
+  margin-top: 0.53333333rem;
+  display: flex;
+  flex: 4;
+}
+.waikuan .middlebody .school .bodyshang {
+  display: flex;
+  flex: 1;
+}
+.waikuan .middlebody .school .bodyshang .bdleft {
+  display: flex;
+  flex: 1;
+  background-color: #fff;
+}
+.waikuan .middlebody .school .bodyshang .bdleft .box1 {
+  width: 2.66666667rem;
+  background-color: #154864;
+}
+.waikuan .middlebody .school .bodyshang .bdleft .box2 {
+  margin-left: 0.53333333rem;
+  border-right: 1.8rem solid transparent;
+  border-left: 0 solid transparent;
+  border-top: 2.4rem solid #fff;
+  background-color: #154864;
+}
+.waikuan .middlebody .school .bodyshang .bdleft .box3 {
+  color: #fff;
+  padding-top: 0.26666667rem;
+  font-weight: bolder;
+  text-align: center;
+  width: 6.66666667rem;
+  font-size: 1.33333333rem;
+  background-color: #154864;
+}
+.waikuan .middlebody .school .bodyshang .bdleft .box4 {
+  border-right: 0 solid transparent;
+  border-left: 1.8rem solid transparent;
+  border-bottom: 2.3rem solid #fff;
+  background-color: #154864;
+}
+.waikuan .middlebody .school .bodyshang .bdright {
+  display: flex;
+  flex: 3;
+  border-top: 0.25rem solid #154864;
+  background-color: #fff;
+}
+.waikuan .middlebody .school .bodyxia {
+  display: flex;
+  flex: 11;
+  flex-direction: column;
+}
+.waikuan .middlebody .school .bodyxia a {
+  display: flex;
+  flex: 1;
+  flex-direction: column;
+}
+.waikuan .middlebody .school .bodyxia a p {
+  color: #000;
+  align-items: center;
+  font-weight: bolder;
+  display: flex;
+  flex: 1;
+}
+.waikuan .middlebody .school .bodyxia a span {
+  color: #154864;
+  margin-top: 0.26666667rem;
+  font-size: 1.33333333rem;
+}
+.waikuan .middlebody .school .bodyxia a .schoolxinxi1 {
+  padding-right: 8rem;
+}
+.waikuan .middlebody .school .bodyxia a span:nth-of-type(3) {
+  padding-right: 0;
+}
+.waikuan .middlebody .eva {
+  margin-top: 0.53333333rem;
+  display: flex;
+  flex: 3;
+}
+.waikuan .middlebody .eva .bodyshang {
+  display: flex;
+  flex: 1;
+}
+.waikuan .middlebody .eva .bodyshang .bdleft {
+  display: flex;
+  flex: 1;
+  background-color: #fff;
+}
+.waikuan .middlebody .eva .bodyshang .bdleft .box1 {
+  width: 2.66666667rem;
+  background-color: #154864;
+}
+.waikuan .middlebody .eva .bodyshang .bdleft .box2 {
+  margin-left: 0.53333333rem;
+  border-right: 1.8rem solid transparent;
+  border-left: 0 solid transparent;
+  border-top: 2.4rem solid #fff;
+  background-color: #154864;
+}
+.waikuan .middlebody .eva .bodyshang .bdleft .box3 {
+  color: #fff;
+  padding-top: 0.26666667rem;
+  font-weight: bolder;
+  text-align: center;
+  width: 6.66666667rem;
+  font-size: 1.33333333rem;
+  background-color: #154864;
+}
+.waikuan .middlebody .eva .bodyshang .bdleft .box4 {
+  border-right: 0 solid transparent;
+  border-left: 1.8rem solid transparent;
+  border-bottom: 2.3rem solid #fff;
+  background-color: #154864;
+}
+.waikuan .middlebody .eva .bodyshang .bdright {
+  display: flex;
+  flex: 3;
+  border-top: 0.25rem solid #154864;
+  background-color: #fff;
+}
+.waikuan .middlebody .eva .bodyxia {
+  display: flex;
+  flex: 10;
+  flex-direction: column;
+}
+.waikuan .middlebody .eva .bodyxia p {
+  padding-top: 0.53333333rem;
+  display: flex;
+  flex: 1;
+}
+.waikuan .middlebody .eva .bodyxia .evacu {
+  padding-right: 0.53333333rem;
+  font-size: 1.33333333rem;
+  font-weight: bolder;
+}
+.waikuan .middlebody .eva .bodyxia .evaxi {
+  padding-top: 0.26666667rem;
+  font-weight: bolder;
+  font-size: 1.06666667rem;
+}
