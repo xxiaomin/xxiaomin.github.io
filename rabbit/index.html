@@ -119,14 +119,16 @@
     </div>
   </div>
   <div class="right_nav" id="right_nav">
-    <a href="https://xxiaomin.github.io/resume/"> <span class="ri_nav">晓敏简历</span></a>
-    <a href="./login.html"> <span class="ri_nav">登录</span></a>
-    <a href="./register.html"> <span class="ri_nav">注册</span></a>
+    <a href="https://xxiaomin.github.io/resume/" class="ri_nav"> 晓敏简历</a>
+    <a href="./login.html" class="ri_nav"> 登录</a>
+    <a href="./register.html" class="ri_nav">注册</a>
     <span class="ri_nav" id="ri_nav1" @click="daoHang1">品牌</span>
     <span class="ri_nav" id="ri_nav2" @click="daoHang2">生鲜</span>
     <span class="ri_nav" id="ri_nav3" @click="daoHang3">服饰</span>
     <span class="ri_nav" id="ri_nav4" @click="daoHang4">餐厨</span>
     <span class="ri_nav" id="ri_nav5" @click="daoHang5">居家</span>
+    <!-- <span class="ri_nav" id="ri_nav6" @click="daoHang6">最新</span> -->
+    <span class="ri_nav" id="ri_nav7" @click="daoHang6">底部</span>
     <span class="ri_nav" id="ri_nav6" @click.stop="huiTou">顶部</span>
   </div>
   <!-- 分类及焦点图 -->
@@ -167,28 +169,72 @@
         </div>
       </div>
       <!-- 焦点图 -->
-      <div class="xtx_banner">
-
-        <ul>
-          <li>
-            <a href="javascript:;">
-              <img src="./uploads/banner_1.png" alt="">
-            </a>
-          </li>
-        </ul>
-        <!-- 切换按钮  -->
-        <a href="javascript:;" class="prev sprites"></a>
-        <a href="javascript:;" class="next sprites"></a>
-        <!-- 指示器小白点 -->
-        <div class="indicator">
-          <span class="active"></span>
-          <span></span>
-          <span ></span>
-          <span></span>
-          <span></span>
-        </div>
-
+     <!-- 焦点图 -->
+     <div class="xtx_banner" @mousemove="qingTime" @mouseleave="kaiTime">
+      <ul>
+        <li>
+          <a href="javascript:;">
+            <img :src="dataList[currentIndex]" />
+          </a>
+        </li>
+      </ul>
+      <!-- <ul>
+        <li>
+          <a href="javascript:;" >
+            <img src="./images/b1.jpg" />
+          </a>
+        </li>
+        <li>
+          <a href="javascript:;" >
+            <img src="./images/b2.jpg" />
+          </a>
+        </li>
+        <li>
+          <a href="javascript:;" >
+            <img src="./images/b3.jpg" />
+          </a>
+        </li>
+        <li>
+          <a href="javascript:;" >
+            <img src="./images/b4.jpg" />
+          </a>
+        </li>
+        <li>
+          <a href="javascript:;" >
+            <img src="./images/b5.jpg" />
+          </a>
+        </li>
+      </ul> -->
+      <!-- 切换按钮  -->
+      <a
+        href="javascript:;"
+        class="prev sprites" 
+        id="prev" 
+        @click="gotoPage(prevIndex)"      
+      ></a>
+      <a
+        href="javascript:; "
+        class="next sprites"
+        id="next"   
+        @click="gotoPage(nextIndex)"    
+      ></a>
+      <div class="indicator">
+        <span
+              v-for="(item, index) in dataList"
+              :key="index"
+              @click="gotoPage(index)"
+              :class="{ active: currentIndex === index }"
+            ></span>
       </div>
+      <!-- 指示器小白点 -->
+      <!-- <div class="indicator">
+        <span class="active"></span>
+        <span></span>
+        <span></span>
+        <span></span>
+        <span></span>
+      </div> -->
+    </div>
     </div>
   </div>
   <!-- 新鲜好物 -->
@@ -272,9 +318,12 @@
       <div class="xtx_goods">
         <ul>
           <li>
-            <a href="javascript:;">
-              <img src="./uploads/brand_goods_1.jpg" alt="">
-            </a>
+            <div class="time">
+              <h2>小兔倒计时</h2>
+              <p class="clock">
+                {{ count }}
+              </p>
+            </div>
             <a href="javascript:;">
               <img src="./uploads/brand_goods_2.jpg" alt="">
             </a>

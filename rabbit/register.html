@@ -11,7 +11,32 @@
   <link rel="stylesheet" href="./css/register.css">
   <link rel="stylesheet" href="https://at.alicdn.com/t/font_2143783_iq6z4ey5vu.css">
 </head>
-
+<style>
+  .right_nav {
+  z-index: 9999;
+  display: flex;
+  flex-direction: column;
+  width: 100px;
+  height: 150px;
+  background-color: #fff;
+  position: fixed;
+  right: 0px;
+  top: 325px;
+}
+.right_nav a{
+  color: #fff;
+  background-color: rgb(186, 194, 194);
+  display: inline-block;
+}
+.right_nav .ri_nav {
+  justify-content: center;
+  align-items: center;
+  display: flex;
+  flex: 1;
+  box-shadow: 0 2px 12px gray;
+   /* border: 1px solid #000; */
+}
+</style>
 <body>
   <!-- 项部导航 -->
   <div class="xtx_topnav">
@@ -199,6 +224,11 @@
       </div>
     </div>
   </div>
+  <div class="right_nav" id="right_nav">
+    <a href="https://xxiaomin.github.io/resume/" class="ri_nav">晓敏简历</a>
+    <a href="./index.html" class="ri_nav"> 首页</a>
+    <a href="./login.html" class="ri_nav">登录</a>
+    </div>
   <script>
 
 

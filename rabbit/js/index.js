@@ -2,6 +2,20 @@ const vm = new Vue({
   el: '#app',
   data() {
     return {
+      count: '',
+      h: 0,
+      m: 0,
+      s: 0,
+      seconds: 3801,
+      dataList: [
+        './images/b1.jpg',
+        './images/b2.jpg',
+        './images/b3.jpg',
+        './images/b4.jpg',
+        './images/b5.jpg'
+      ],
+      currentIndex: 0, // 默认显示图片
+      timer1: null, // 定时器
       scroolTop: '',
       offsetTop: '',
       keyword: '',
@@ -87,7 +101,9 @@ const vm = new Vue({
       ]
     }
   },
+
   mounted() {
+    this.Timea()
     // const obj = document.getElementById('header_nav')
     window.addEventListener('scroll', this.menu)
     window.addEventListener('scroll', this.menuTou)
@@ -97,6 +113,22 @@ const vm = new Vue({
     window.removeEventListener('scroll', this.menuTou)
   },
   methods: {
+    Timea() {
+      setInterval(() => {
+        this.seconds -= 1
+        const h = parseInt((this.seconds / 60 / 60) % 24)
+        const m = parseInt((this.seconds / 60) % 60)
+        const s = parseInt(this.seconds % 60)
+        if (this.seconds === -1) {
+          this.seconds = 3601
+          clearInterval(this.timer)
+        }
+        this.h = h < 10 ? '0' + h : h
+        this.m = m < 10 ? '0' + m : m
+        this.s = s < 10 ? '0' + s : s
+        this.count = this.h + ': ' + this.m + ':' + this.s
+      }, 1000)
+    },
     menu(e) {
       const rn1 = document.getElementById('right_nav')
       const header = document.getElementById('header_nav')
@@ -137,7 +169,9 @@ const vm = new Vue({
     daoHang5() {
       document.documentElement.scrollTop = 4265
     },
-    tiaoZhuan() {},
+    daoHang6() {
+      document.documentElement.scrollTop = 6265
+    },
     chuxian() {
       this.keyword = []
     },
@@ -149,11 +183,45 @@ const vm = new Vue({
         element.current = false
       })
       this.leftList[i].current = true
+    },
+    runInv() {
+      this.timer1 = setInterval(() => {
+        this.gotoPage(this.nextIndex)
+      }, 3000)
+    },
+    kaiTime() {
+      this.runInv()
+      document.getElementById('rightbox').style.display = 'block'
+    },
+    qingTime() {
+      clearInterval(this.timer1)
+      document.getElementById('rightbox').style.display = 'none'
+    },
+    gotoPage(index) {
+      this.currentIndex = index
     }
+  },
+  created() {
+    this.runInv()
   },
   computed: {
     hasData() {
       return !this.List.length
+    }, // 上一张
+    prevIndex() {
+      if (this.currentIndex === 0) {
+        return this.dataList.length - 1
+      } else {
+        return this.currentIndex - 1
+      }
+    },
+    // 下一张
+    nextIndex() {
+      if (this.currentIndex === this.dataList.length - 1) {
+        return 0
+      } else {
+        return this.currentIndex + 1
+      }
     }
   },
 
