@@ -30,12 +30,12 @@
 
 <body>
   <!-- 项部导航 -->
-  
+ <div id="app">
   <!-- 头部 -->
   <div class="xtx_header">
     <div class="wrapper">
       <!-- 网站Logo -->
-      <h1 class="xtx_logo"><a href="/">小兔鲜儿</a></h1>
+      <h1 class="xtx_logo"><a href="javascript:;">小兔鲜儿</a></h1>
       <!-- 主导航 -->
       <div class="xtx_navs">
         <ul class="clearfix">
@@ -68,6 +68,7 @@
           </li>
         </ul>
       </div>
+
       <!-- 站内搜索 -->
       <div class="xtx_search clearfix">
         <!-- 购物车 -->
@@ -79,100 +80,90 @@
           <input type="text" placeholder="搜一搜" onclick="location.href='javascript:;'">
         </div>
       </div>
+    </div>  
+  </div>
+  <div class="header_nav">
+    <div class="wrapper" id="header_nav">
+      <!-- 网站Logo -->
+      <h1 class="xtx_logo"><a href="javascript:;">小兔鲜儿</a></h1>
+
+      <!-- 站内搜索 -->
+      <div class="xtx_search clearfix">
+        <!-- 购物车 -->
+
+        <a href="javascript:;" class="xtx_search_cart sprites">
+          <i>2</i>
+          <!-- <span class="cart_box">12345</span> -->
+        </a>
+        <!-- 搜索框 -->
+        <div class="xtx_search_wrapper">
+          <input
+            v-model="keyword"
+            type="text"
+            class="searchInput"
+            placeholder="搜索项目 "
+            @click="chuxian"
+            @blur="hiddenData"
+          />
+        </div>
+        <div class="search-content" v-show="keyword" ref="search">
+          <!-- 细节1：v-show与keyword绑定，实现删除搜索框全部内容时消失 -->
+
+          <div class="search-item" v-for="item of List" :key="item.id">
+            <span>{{ item.id }}:{{ item.name }}</span>
+          </div>
+
+          <div class="search-item1" v-show="hasData">找不到相应结果</div>
+        </div>
+      </div>
     </div>
+  </div>
+  <div class="right_nav" id="right_nav">
+    <a href="https://xxiaomin.github.io/resume/"> <span class="ri_nav">晓敏简历</span></a>
+    <a href="./login.html"> <span class="ri_nav">登录</span></a>
+    <a href="./register.html"> <span class="ri_nav">注册</span></a>
+    <span class="ri_nav" id="ri_nav1" @click="daoHang1">品牌</span>
+    <span class="ri_nav" id="ri_nav2" @click="daoHang2">生鲜</span>
+    <span class="ri_nav" id="ri_nav3" @click="daoHang3">服饰</span>
+    <span class="ri_nav" id="ri_nav4" @click="daoHang4">餐厨</span>
+    <span class="ri_nav" id="ri_nav5" @click="daoHang5">居家</span>
+    <span class="ri_nav" id="ri_nav6" @click.stop="huiTou">顶部</span>
   </div>
   <!-- 分类及焦点图 -->
   <div class="xtx_entry">
     <div class="wrapper">
       <!-- 分类 -->
-      <div class="xtx_category">
-        <!-- 顶级分类 -->
-        <ul class="xtx_category_super">
-          <li>
-            <a href="javascript:;">
-              生鲜
-              <small>水果</small>
-              <small>蔬菜</small>
-            </a>
-            <i class="sprites"></i>
-            
-          </li>
-          <li class="active">
-            <a href="javascript:;">
-              美食
-              <small>面点</small>
-              <small>干果</small>
-            </a>
-            <i class="sprites"></i>
-          </li>
-          <li>
-            <a href="javascript:;">
-              电器
-              <small>数码产品</small>
-            </a>
-            <i class="sprites"></i>
-          </li>
-          <li>
-            <a href="javascript:;">
-              居家
-              <small>床品</small>
-              <small>四件套</small>
-              <small>被枕</small>
-            </a>
-            <i class="sprites"></i>
-          </li>
-          <li>
-            <a href="javascript:;">
-              洗护
-              <small>洗发洗护</small>
-              <small>美妆</small>
-            </a>
-            <i class="sprites"></i>
-          </li>
-          <li>
-            <a href="javascript:;">
-              孕婴
-              <small>奶粉</small>
-              <small>玩具</small>
-              <small>辅食</small>
-            </a>
-            <i class="sprites"></i>
-          </li>
-          <li>
-            <a href="javascript:;">
-              餐橱
-              <small>数码产品</small>
-            </a>
-            <i class="sprites"></i>
-          </li>
-          <li>
-            <a href="javascript:;">
-              服饰
-              <small>女装</small>
-              <small>男装</small>
-            </a>
-            <i class="sprites"></i>
-          </li>
-          <li>
-            <a href="javascript:;">
-              杂货
-              <small>户外</small>
-              <small>图书</small>
-            </a>
-            <i class="sprites"></i>
-          </li>
-          <li>
-            <a href="javascript:;">
-              品牌
-              <small>品牌制造</small>
-            </a>
-            <i class="sprites"></i>
-          </li>
-        </ul>
-        <!-- 子分类 -->
-        <!-- 右边变白的 -->
-        <div class="xtx_category_subset">
-          1232335
+      <div class="xtx_category" id="rightbox">
+        <div class="xtx_category_super">
+          <div class="box">
+            <ul
+              v-for="(item, index) in leftList"
+              :key="index"
+              @mouseenter="xianChu(index)"
+            >
+              <li>
+                <a href="javascript:;">
+                  {{ item.aname }}
+                  <small>{{ item.asmall }}</small>
+                  <small>{{ item.bsmall }}</small>
+                  <small>{{ item.csmall }}</small>
+                </a>
+                <i class="sprites"></i>
+              </li>
+              <div class="box1">
+                <div
+                  :class="{ xtx_category_subset: item.current }"
+                  v-for="(item, index) in leftList"
+                  :key="index"
+                >
+                  {{ item.num }}
+                </div>
+              </div>
+            </ul>
+          </div>
+
+          <!-- 子分类 -->
+          <!-- 右边变白的 -->
         </div>
       </div>
       <!-- 焦点图 -->
@@ -1190,7 +1181,9 @@
       </div>
     </div>
   </div>
-
+</div> 
+<script src="./js/vue-2.6.12.js"></script>
+<script src="./js/index.js"></script>
   <script>
     let a = document.querySelector('.xtx_navs li:first-child')
     let username = JSON.parse(localStorage.getItem('data'))
@@ -1205,7 +1198,7 @@
         <a href="javascript:;">你好 ${username.uname}</a>
       `
     }
-
+ 
   </script>
 </body>
 
