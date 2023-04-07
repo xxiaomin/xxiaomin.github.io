@@ -412,6 +412,9 @@
   display: flex;
   flex: 1;
 }
+.waikuan .middlebody .project .bodyxia a p:nth-of-type(5):hover {
+  color: blue;
+}
 .waikuan .middlebody .project .bodyxia a span {
   color: #154864;
   margin-top: 0.26666667rem;
