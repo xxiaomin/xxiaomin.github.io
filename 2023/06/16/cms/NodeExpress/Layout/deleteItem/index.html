@@ -1,0 +1,202 @@
+<!DOCTYPE html><html lang="zh-CN" data-theme="light"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0,viewport-fit=cover"><title>express主页删除数据库数据 | XxiaoMin Blog</title><meta name="author" content="xxiaomin"><meta name="copyright" content="xxiaomin"><meta name="format-detection" content="telephone=no"><meta name="theme-color" content="#ffffff"><meta name="description" content="写删除对话框&#x2F;&#x2F;style样式.isDelete&amp;#123;  display:none&amp;#125;&#x2F;&#x2F;body里 &lt;div class&#x3D;&quot;dialog isDelete&quot;&gt;&lt;&#x2F;div&gt;  &lt;div class&#x3D;&quot;dialog-wrap isDelete&quot;&gt;    &lt;h3&gt;确定是否删除&lt;&#x2F;h3&gt;">
+<meta property="og:type" content="article">
+<meta property="og:title" content="express主页删除数据库数据">
+<meta property="og:url" content="https://xxiaomin.github.io/2023/06/16/cms/NodeExpress/Layout/deleteItem/index.html">
+<meta property="og:site_name" content="XxiaoMin Blog">
+<meta property="og:description" content="写删除对话框&#x2F;&#x2F;style样式.isDelete&amp;#123;  display:none&amp;#125;&#x2F;&#x2F;body里 &lt;div class&#x3D;&quot;dialog isDelete&quot;&gt;&lt;&#x2F;div&gt;  &lt;div class&#x3D;&quot;dialog-wrap isDelete&quot;&gt;    &lt;h3&gt;确定是否删除&lt;&#x2F;h3&gt;">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://i.pinimg.com/originals/ba/38/ed/ba38edcabead4a6d1dc41b02e0453d69.jpg">
+<meta property="article:published_time" content="2023-06-16T09:56:32.582Z">
+<meta property="article:modified_time" content="2023-06-16T10:22:02.732Z">
+<meta property="article:author" content="xxiaomin">
+<meta property="article:tag" content="后端">
+<meta property="article:tag" content="Node+MySQL+Express">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://i.pinimg.com/originals/ba/38/ed/ba38edcabead4a6d1dc41b02e0453d69.jpg"><link rel="shortcut icon" href="/img/logo2.png"><link rel="canonical" href="https://xxiaomin.github.io/2023/06/16/cms/NodeExpress/Layout/deleteItem/index.html"><link rel="preconnect" href="//cdn.jsdelivr.net"/><link rel="preconnect" href="//busuanzi.ibruce.info"/><link rel="stylesheet" href="/css/index.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free/css/all.min.css" media="print" onload="this.media='all'"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/ui/dist/fancybox/fancybox.min.css" media="print" onload="this.media='all'"><script>const GLOBAL_CONFIG = { 
+  root: '/',
+  algolia: undefined,
+  localSearch: undefined,
+  translate: undefined,
+  noticeOutdate: undefined,
+  highlight: {"plugin":"highlighjs","highlightCopy":true,"highlightLang":true,"highlightHeightLimit":50},
+  copy: {
+    success: '复制成功',
+    error: '复制错误',
+    noSupport: '浏览器不支持'
+  },
+  relativeDate: {
+    homepage: false,
+    post: false
+  },
+  runtime: '',
+  date_suffix: {
+    just: '刚刚',
+    min: '分钟前',
+    hour: '小时前',
+    day: '天前',
+    month: '个月前'
+  },
+  copyright: undefined,
+  lightbox: 'fancybox',
+  Snackbar: undefined,
+  source: {
+    justifiedGallery: {
+      js: 'https://cdn.jsdelivr.net/npm/flickr-justified-gallery/dist/fjGallery.min.js',
+      css: 'https://cdn.jsdelivr.net/npm/flickr-justified-gallery/dist/fjGallery.min.css'
+    }
+  },
+  isPhotoFigcaption: false,
+  islazyload: false,
+  isAnchor: false,
+  percent: {
+    toc: true,
+    rightside: true,
+  }
+}</script><script id="config-diff">var GLOBAL_CONFIG_SITE = {
+  title: 'express主页删除数据库数据',
+  isPost: true,
+  isHome: false,
+  isHighlightShrink: false,
+  isToc: true,
+  postUpdate: '2023-06-16 18:22:02'
+}</script><noscript><style type="text/css">
+  #nav {
+    opacity: 1
+  }
+  .justified-gallery img {
+    opacity: 1
+  }
+
+  #recent-posts time,
+  #post-meta time {
+    display: inline !important
+  }
+</style></noscript><script>(win=>{
+    win.saveToLocal = {
+      set: function setWithExpiry(key, value, ttl) {
+        if (ttl === 0) return
+        const now = new Date()
+        const expiryDay = ttl * 86400000
+        const item = {
+          value: value,
+          expiry: now.getTime() + expiryDay,
+        }
+        localStorage.setItem(key, JSON.stringify(item))
+      },
+
+      get: function getWithExpiry(key) {
+        const itemStr = localStorage.getItem(key)
+
+        if (!itemStr) {
+          return undefined
+        }
+        const item = JSON.parse(itemStr)
+        const now = new Date()
+
+        if (now.getTime() > item.expiry) {
+          localStorage.removeItem(key)
+          return undefined
+        }
+        return item.value
+      }
+    }
+  
+    win.getScript = url => new Promise((resolve, reject) => {
+      const script = document.createElement('script')
+      script.src = url
+      script.async = true
+      script.onerror = reject
+      script.onload = script.onreadystatechange = function() {
+        const loadState = this.readyState
+        if (loadState && loadState !== 'loaded' && loadState !== 'complete') return
+        script.onload = script.onreadystatechange = null
+        resolve()
+      }
+      document.head.appendChild(script)
+    })
+  
+    win.getCSS = (url,id = false) => new Promise((resolve, reject) => {
+      const link = document.createElement('link')
+      link.rel = 'stylesheet'
+      link.href = url
+      if (id) link.id = id
+      link.onerror = reject
+      link.onload = link.onreadystatechange = function() {
+        const loadState = this.readyState
+        if (loadState && loadState !== 'loaded' && loadState !== 'complete') return
+        link.onload = link.onreadystatechange = null
+        resolve()
+      }
+      document.head.appendChild(link)
+    })
+  
+      win.activateDarkMode = function () {
+        document.documentElement.setAttribute('data-theme', 'dark')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#0d0d0d')
+        }
+      }
+      win.activateLightMode = function () {
+        document.documentElement.setAttribute('data-theme', 'light')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#ffffff')
+        }
+      }
+      const t = saveToLocal.get('theme')
+    
+          if (t === 'dark') activateDarkMode()
+          else if (t === 'light') activateLightMode()
+        
+      const asideStatus = saveToLocal.get('aside-status')
+      if (asideStatus !== undefined) {
+        if (asideStatus === 'hide') {
+          document.documentElement.classList.add('hide-aside')
+        } else {
+          document.documentElement.classList.remove('hide-aside')
+        }
+      }
+    
+    const detectApple = () => {
+      if(/iPad|iPhone|iPod|Macintosh/.test(navigator.userAgent)){
+        document.documentElement.classList.add('apple')
+      }
+    }
+    detectApple()
+    })(window)</script><style>#article-container.post-content h1:before, h2:before, h3:before, h4:before, h5:before, h6:before { -webkit-animation: avatar_turn_around 1s linear infinite; -moz-animation: avatar_turn_around 1s linear infinite; -o-animation: avatar_turn_around 1s linear infinite; -ms-animation: avatar_turn_around 1s linear infinite; animation: avatar_turn_around 1s linear infinite; }</style><meta name="generator" content="Hexo 6.3.0"></head><body><div id="loading-box"><div class="loading-left-bg"></div><div class="loading-right-bg"></div><div class="spinner-box"><div class="configure-border-1"><div class="configure-core"></div></div><div class="configure-border-2"><div class="configure-core"></div></div><div class="loading-word">加载中...</div></div></div><script>const preloader = {
+  endLoading: () => {
+    document.body.style.overflow = '';
+    document.getElementById('loading-box').classList.add("loaded")
+  },
+  initLoading: () => {
+    document.body.style.overflow = 'hidden';
+    document.getElementById('loading-box').classList.remove("loaded")
+  }
+}
+
+preloader.initLoading()
+window.addEventListener('load',()=> { preloader.endLoading() })
+
+if (false) {
+  document.addEventListener('pjax:send', () => { preloader.initLoading() })
+  document.addEventListener('pjax:complete', () => { preloader.endLoading() })
+}</script><div id="sidebar"><div id="menu-mask"></div><div id="sidebar-menus"><div class="avatar-img is-center"><img src="https://tupian.qqw21.com/article/UploadPic/2020-7/202071523123939850.jpg" onerror="onerror=null;src='/img/friend_404.gif'" alt="avatar"/></div><div class="sidebar-site-data site-data is-center"><a href="/archives/"><div class="headline">文章</div><div class="length-num">14</div></a><a href="/tags/"><div class="headline">标签</div><div class="length-num">11</div></a><a href="/categories/"><div class="headline">分类</div><div class="length-num">7</div></a></div><hr/><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 主页</span></a></div><div class="menus_item"><a class="site-page" href="/archives/"><i class="fa-fw fas fa-archive"></i><span> Archives</span></a></div><div class="menus_item"><a class="site-page" href="/resume/"><i class="fa-fw fas fa-heart"></i><span> 个人简历</span></a></div><div class="menus_item"><a class="site-page" href="/tags/"><i class="fa-fw fas fa-tags"></i><span> 标签</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> 分类</span></a></div><div class="menus_item"><a class="site-page group" href="javascript:void(0);"><i class="fa-fw fas fa-list"></i><span> 链接</span><i class="fas fa-chevron-down"></i></a><ul class="menus_item_child"><li><a class="site-page child" href="/link/"><i class="fa-fw fas fa-link"></i><span> 友情链接</span></a></li><li><a class="site-page child" href="/about/"><i class="fa-fw fas fa-heart"></i><span> 关于</span></a></li></ul></div></div></div></div><div class="post" id="body-wrap"><header class="post-bg" id="page-header" style="background-image: url('https://i.pinimg.com/originals/ba/38/ed/ba38edcabead4a6d1dc41b02e0453d69.jpg')"><nav id="nav"><span id="blog-info"><a href="/" title="XxiaoMin Blog"><img class="site-icon" src="/img/logo2.png"/><span class="site-name">XxiaoMin Blog</span></a></span><div id="menus"><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 主页</span></a></div><div class="menus_item"><a class="site-page" href="/archives/"><i class="fa-fw fas fa-archive"></i><span> Archives</span></a></div><div class="menus_item"><a class="site-page" href="/resume/"><i class="fa-fw fas fa-heart"></i><span> 个人简历</span></a></div><div class="menus_item"><a class="site-page" href="/tags/"><i class="fa-fw fas fa-tags"></i><span> 标签</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> 分类</span></a></div><div class="menus_item"><a class="site-page group" href="javascript:void(0);"><i class="fa-fw fas fa-list"></i><span> 链接</span><i class="fas fa-chevron-down"></i></a><ul class="menus_item_child"><li><a class="site-page child" href="/link/"><i class="fa-fw fas fa-link"></i><span> 友情链接</span></a></li><li><a class="site-page child" href="/about/"><i class="fa-fw fas fa-heart"></i><span> 关于</span></a></li></ul></div></div><div id="toggle-menu"><a class="site-page" href="javascript:void(0);"><i class="fas fa-bars fa-fw"></i></a></div></div></nav><div id="post-info"><h1 class="post-title">express主页删除数据库数据</h1><div id="post-meta"><div class="meta-firstline"><span class="post-meta-date"><i class="far fa-calendar-alt fa-fw post-meta-icon"></i><span class="post-meta-label">发表于</span><time class="post-meta-date-created" datetime="2023-06-16T09:56:32.582Z" title="发表于 2023-06-16 17:56:32">2023-06-16</time><span class="post-meta-separator">|</span><i class="fas fa-history fa-fw post-meta-icon"></i><span class="post-meta-label">更新于</span><time class="post-meta-date-updated" datetime="2023-06-16T10:22:02.732Z" title="更新于 2023-06-16 18:22:02">2023-06-16</time></span><span class="post-meta-categories"><span class="post-meta-separator">|</span><i class="fas fa-inbox fa-fw post-meta-icon"></i><a class="post-meta-categories" href="/categories/%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/">学习笔记</a></span></div><div class="meta-secondline"><span class="post-meta-separator">|</span><span class="post-meta-pv-cv" id="" data-flag-title="express主页删除数据库数据"><i class="far fa-eye fa-fw post-meta-icon"></i><span class="post-meta-label">阅读量:</span><span id="busuanzi_value_page_pv"><i class="fa-solid fa-spinner fa-spin"></i></span></span></div></div></div></header><main class="layout" id="content-inner"><div id="post"><article class="post-content" id="article-container"><h2 id="写删除对话框"><a href="#写删除对话框" class="headerlink" title="写删除对话框"></a>写删除对话框</h2><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">//style样式</span><br><span class="line">.isDelete&#123;</span><br><span class="line">  display:none</span><br><span class="line">&#125;</span><br><span class="line">//body里</span><br><span class="line"> &lt;div class=&quot;dialog isDelete&quot;&gt;&lt;/div&gt;</span><br><span class="line">  &lt;div class=&quot;dialog-wrap isDelete&quot;&gt;</span><br><span class="line">    &lt;h3&gt;确定是否删除&lt;/h3&gt;</span><br><span class="line">    &lt;div class=&quot;close&quot; id=&quot;close&quot;&gt;</span><br><span class="line">      &lt;img src=&quot;/images/home_black.png&quot;  alt=&quot;&quot;&gt;</span><br><span class="line">    &lt;/div&gt;</span><br><span class="line">      &lt;div class=&quot;dialog-footer&quot;&gt;</span><br><span class="line">        &lt;span class=&quot;cancel&quot; id=&quot;cancel&quot;&gt;取消&lt;/span&gt;</span><br><span class="line">        &lt;button class=&quot;determine determineDel&quot;&gt;确定&lt;/button&gt;</span><br><span class="line">      &lt;/div&gt;</span><br><span class="line">  &lt;/div&gt;</span><br></pre></td></tr></table></figure>
+<h2 id="点击删除按钮传一个id值"><a href="#点击删除按钮传一个id值" class="headerlink" title="点击删除按钮传一个id值"></a>点击删除按钮传一个id值</h2><ul>
+<li>data-id&#x3D;”&lt;%&#x3D; item.id %&gt;<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">&lt;table class=&quot;table&quot;&gt;</span><br><span class="line">    &lt;thead&gt;</span><br><span class="line">     &lt;tr&gt;</span><br><span class="line">       &lt;th&gt;ID&lt;/th&gt;</span><br><span class="line">       &lt;th&gt;图片名称&lt;/th&gt;</span><br><span class="line">       &lt;th&gt;图片路径&lt;/th&gt;</span><br><span class="line">       &lt;th&gt;操作&lt;/th&gt;</span><br><span class="line">     &lt;/tr&gt;</span><br><span class="line">    &lt;/thead&gt;</span><br><span class="line">    &lt;tbody&gt;</span><br><span class="line">     &lt;% backgroundList.forEach(function(item)&#123; %&gt;</span><br><span class="line">       &lt;tr&gt;</span><br><span class="line">         &lt;td&gt; &lt;%= item.id %&gt;&lt;/td&gt;</span><br><span class="line">         &lt;td&gt; &lt;%= item.name %&gt;&lt;/td&gt;</span><br><span class="line">         &lt;td&gt; &lt;%= item.imgUrl %&gt;&lt;/td&gt;</span><br><span class="line">       &lt;td&gt;</span><br><span class="line">         &lt;img src=&quot;/images/home_black.png&quot; class=&quot;edit&quot;&gt;</span><br><span class="line">         &lt;img src=&quot;/images/home_black.png&quot; alt=&quot;del&quot; class=&quot;delete-item&quot; data-id=&quot;&lt;%= item.id %&gt;&quot;&gt;//传遍历的id</span><br><span class="line">       &lt;/td&gt;</span><br><span class="line">       &lt;/tr&gt;</span><br><span class="line">       &lt;%  &#125;) %&gt;        </span><br><span class="line">    &lt;/tbody&gt;</span><br><span class="line">   &lt;/table&gt;</span><br></pre></td></tr></table></figure></li>
+</ul>
+<h2 id="功能"><a href="#功能" class="headerlink" title="功能"></a>功能</h2><h3 id="点击弹出删除框"><a href="#点击弹出删除框" class="headerlink" title="点击弹出删除框"></a>点击弹出删除框</h3><h3 id="取消，确定按钮"><a href="#取消，确定按钮" class="headerlink" title="取消，确定按钮"></a>取消，确定按钮</h3><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">&lt;script src=&quot;/javascripts/jquery.js&quot;&gt;&lt;/script&gt;</span><br><span class="line"> &lt;script&gt;</span><br><span class="line">   var id = &#x27;&#x27;;</span><br><span class="line">   $(function()&#123;</span><br><span class="line">     // 点击删除按钮</span><br><span class="line">     $(&#x27;.delete-item&#x27;).click(function()&#123;</span><br><span class="line">       id = $(this).data(&#x27;id&#x27;);</span><br><span class="line">       $(&#x27;.isDelete&#x27;).show();</span><br><span class="line">     &#125;)</span><br><span class="line">     // 隐藏删除表单</span><br><span class="line">     $(&#x27;#close,#cancel&#x27;).click(function()&#123;</span><br><span class="line">       $(&#x27;.isDelete&#x27;).hide();</span><br><span class="line">     &#125;)</span><br><span class="line">     // 点击确定删除determineDel</span><br><span class="line">     $(&#x27;.determineDel&#x27;).click(function()&#123;</span><br><span class="line">       window.location.href= `/del?id=$&#123;id&#125;`;</span><br><span class="line">     &#125;)</span><br><span class="line">   &#125;)</span><br><span class="line"> &lt;/script&gt;</span><br></pre></td></tr></table></figure>
+<h2 id="删除提交的地方"><a href="#删除提交的地方" class="headerlink" title="删除提交的地方"></a>删除提交的地方</h2><ul>
+<li>window.location.href&#x3D; <code>/del?id=$&#123;id&#125;</code>;</li>
+<li>在app.js写var del &#x3D; require(‘.&#x2F;routes&#x2F;del’)&amp;&amp;app.use(‘&#x2F;del’, del)</li>
+<li>删除后要重新渲染页面<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">var express = require(&#x27;express&#x27;)</span><br><span class="line">var router = express.Router()</span><br><span class="line">var db = require(&#x27;../sql.js&#x27;)</span><br><span class="line">/* GET home page. */</span><br><span class="line">router.get(&#x27;/&#x27;, function (req, res, next) &#123;</span><br><span class="line">  var id = req.query.id</span><br><span class="line">  db.query(`delete from background where id=$&#123;id&#125; `, function (err, data) &#123;</span><br><span class="line">    db.query(&#x27;select * from background &#x27;, function (err, data) &#123;</span><br><span class="line">      var pager = &#123;&#125;</span><br><span class="line">      // 当前页码</span><br><span class="line">      pager.pageCurrent = 1</span><br><span class="line">      // 总的记录数</span><br><span class="line">      pager.maxNum = data.length</span><br><span class="line">      // 每页显示多少条记录</span><br><span class="line">      pager.pageSize = 5</span><br><span class="line">      // 一共多少页</span><br><span class="line">      pager.pageCount = parseInt(Math.ceil(page.maxNum / pager.pageSize))</span><br><span class="line">      // [0,5],[5,10]....</span><br><span class="line">      var dataList = data.slice(</span><br><span class="line">        (pager.pageCurrent - 1) * pager.pageSize,</span><br><span class="line">        (pager.pageCurrent - 1) * pager.pageSize + pager.pageSize</span><br><span class="line">      )</span><br><span class="line">      if (err) &#123;</span><br><span class="line">        throw err</span><br><span class="line">      &#125; else &#123;</span><br><span class="line">        res.render(&#x27;backgroundList&#x27;, &#123; backgroundList: dataList, pager: pager &#125;)</span><br><span class="line">      &#125;</span><br><span class="line">    &#125;)</span><br><span class="line">  &#125;)</span><br><span class="line">&#125;)</span><br><span class="line">module.exports = router</span><br></pre></td></tr></table></figure></li>
+</ul>
+<h2 id="遇到的一个添加图片Bug"><a href="#遇到的一个添加图片Bug" class="headerlink" title="遇到的一个添加图片Bug"></a>遇到的一个添加图片Bug</h2><ul>
+<li>因为添加数据的页面没有收到，分页后的数据命名事件，所以在哪个文件加上数据重新渲染的分页代码</li>
+<li>如addBackground.js里<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">var express = require(&#x27;express&#x27;)</span><br><span class="line">var router = express.Router()</span><br><span class="line">var db = require(&#x27;../sql.js&#x27;)</span><br><span class="line">var multiparty = require(&#x27;multiparty&#x27;)</span><br><span class="line">/* GET home page. */</span><br><span class="line">router.post(&#x27;/&#x27;, function (req, res, next) &#123;</span><br><span class="line">  var form = new multiparty.Form()</span><br><span class="line">  // 上传图片，需要一个目录</span><br><span class="line">  form.uploadDir = &#x27;./public/upload&#x27;</span><br><span class="line">  form.parse(req, function (err, fields, files) &#123;</span><br><span class="line">    var imgName = fields.imgName[0]</span><br><span class="line">    console.log(files)</span><br><span class="line">    // 上传图片路径</span><br><span class="line">    var pic = files.pic[0].path</span><br><span class="line">    db.query(</span><br><span class="line">      &#x27;insert into background value (?,?,?)&#x27;,</span><br><span class="line">      [0, imgName, pic],</span><br><span class="line">      function (err, data) &#123;</span><br><span class="line">        if (err) &#123;</span><br><span class="line">          throw err</span><br><span class="line">        &#125; else &#123;</span><br><span class="line">          db.query(&#x27;select * from background &#x27;, function (err, data) &#123;</span><br><span class="line">            //添加的地方</span><br><span class="line">            var pager = &#123;&#125;</span><br><span class="line">            // 当前页码</span><br><span class="line">            pager.pageCurrent = 1</span><br><span class="line">            // 总的记录数</span><br><span class="line">            pager.maxNum = data.length</span><br><span class="line">            // 每页显示多少条记录</span><br><span class="line">            pager.pageSize = 5</span><br><span class="line">            // 一共多少页</span><br><span class="line">            pager.pageCount = parseInt(Math.ceil(page.maxNum / pager.pageSize))</span><br><span class="line">            // [0,5],[5,10]....</span><br><span class="line">            var dataList = data.slice(</span><br><span class="line">              (pager.pageCurrent - 1) * pager.pageSize,</span><br><span class="line">              (pager.pageCurrent - 1) * pager.pageSize + pager.pageSize</span><br><span class="line">            )</span><br><span class="line">            if (err) &#123;</span><br><span class="line">              throw err</span><br><span class="line">            &#125; else &#123;</span><br><span class="line">              res.render(&#x27;backgroundList&#x27;, &#123;</span><br><span class="line">                backgroundList: dataList,</span><br><span class="line">                pager: pager</span><br><span class="line">              &#125;)</span><br><span class="line">            &#125;</span><br><span class="line">          &#125;)</span><br><span class="line">            //添加的地方</span><br><span class="line">        &#125;</span><br><span class="line">      &#125;</span><br><span class="line">    )</span><br><span class="line">  &#125;)</span><br><span class="line">&#125;)</span><br><span class="line">module.exports = router</span><br></pre></td></tr></table></figure></li>
+</ul>
+<h2 id="其他部分"><a href="#其他部分" class="headerlink" title="其他部分"></a>其他部分</h2><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">.isDelete&#123;</span><br><span class="line">  display: none;</span><br><span class="line">&#125;</span><br><span class="line">.page&#123;</span><br><span class="line">  width: 100%;</span><br><span class="line">  padding: 20px;</span><br><span class="line">  color: #fff;</span><br><span class="line">  border-top: 1px solid #ccc;</span><br><span class="line">&#125;</span><br><span class="line">.page ul li&#123;</span><br><span class="line">  margin-right: 6px;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>以上是我的学习笔记~</p>
+</article><div class="post-copyright"><div class="post-copyright__author"><span class="post-copyright-meta">文章作者: </span><span class="post-copyright-info"><a href="https://xxiaomin.github.io">xxiaomin</a></span></div><div class="post-copyright__type"><span class="post-copyright-meta">文章链接: </span><span class="post-copyright-info"><a href="https://xxiaomin.github.io/2023/06/16/cms/NodeExpress/Layout/deleteItem/">https://xxiaomin.github.io/2023/06/16/cms/NodeExpress/Layout/deleteItem/</a></span></div><div class="post-copyright__notice"><span class="post-copyright-meta">版权声明: </span><span class="post-copyright-info">本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" target="_blank">CC BY-NC-SA 4.0</a> 许可协议。转载请注明来自 <a href="https://xxiaomin.github.io" target="_blank">XxiaoMin Blog</a>！</span></div></div><div class="tag_share"><div class="post-meta__tag-list"><a class="post-meta__tags" href="/tags/%E5%90%8E%E7%AB%AF/">后端</a><a class="post-meta__tags" href="/tags/Node-MySQL-Express/">Node+MySQL+Express</a></div><div class="post_share"><div class="social-share" data-image="https://i.pinimg.com/originals/ba/38/ed/ba38edcabead4a6d1dc41b02e0453d69.jpg" data-sites="facebook,twitter,wechat,weibo,qq"></div><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/butterfly-extsrc/sharejs/dist/css/share.min.css" media="print" onload="this.media='all'"><script src="https://cdn.jsdelivr.net/npm/butterfly-extsrc/sharejs/dist/js/social-share.min.js" defer></script></div></div><nav class="pagination-post" id="pagination"><div class="next-post pull-full"><a href="/2023/06/16/cms/NodeExpress/Layout/inputSearch/" title="express主页实现搜索功能"><img class="cover" src="https://i.pinimg.com/736x/ec/83/f3/ec83f317275891af2fc5ee5d71bf8378.jpg" onerror="onerror=null;src='/img/404.jpg'" alt="cover of next post"><div class="pagination-info"><div class="label">下一篇</div><div class="next_info">express主页实现搜索功能</div></div></a></div></nav><div class="relatedPosts"><div class="headline"><i class="fas fa-thumbs-up fa-fw"></i><span>相关推荐</span></div><div class="relatedPosts-list"><div><a href="/2023/06/03/cms/NodeExpress/createProject/systemCreateItem/" title="终端创建后端项目"><img class="cover" src="https://gss0.baidu.com/9vo3dSag_xI4khGko9WTAnF6hhy/zhidao/pic/item/908fa0ec08fa513d37a2479a3f6d55fbb2fbd96d.jpg" alt="cover"><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2023-06-03</div><div class="title">终端创建后端项目</div></div></a></div><div><a href="/2023/06/11/cms/NodeExpress/Layout/homePage/" title="express主页书写布局"><img class="cover" src="https://gss0.baidu.com/7Po3dSag_xI4khGko9WTAnF6hhy/zhidao/pic/item/08f790529822720e135dc9be79cb0a46f31fabe6.jpg" alt="cover"><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2023-06-11</div><div class="title">express主页书写布局</div></div></a></div><div><a href="/2023/06/12/cms/NodeExpress/Layout/leftPage/" title="express主页左边布局&amp;jQuery效果"><img class="cover" src="https://pic1.zhimg.com/v2-70119c437cff012b67f2bcc385f4180e_r.jpg?source=1940ef5c" alt="cover"><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2023-06-12</div><div class="title">express主页左边布局&amp;jQuery效果</div></div></a></div><div><a href="/2023/06/12/cms/NodeExpress/Layout/rightPage/" title="express主页右边路由渲染页面and向数据库添加数据"><img class="cover" src="https://ts1.cn.mm.bing.net/th/id/R-C.160961c23d8fc21981cce7b44f007d2b?rik=H5U00eqBc2WlDA&riu=http%3a%2f%2fup.bizhizu.com%2fpic_360%2f13%2fcc%2f97%2f13cc97f2f9471139dfa4e044e18269e8.jpg&ehk=BGHyhMRx12zVjswRvlQ9JP9YnNbwqBfESNEKoF%2bwpE4%3d&risl=&pid=ImgRaw&r=0" alt="cover"><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2023-06-12</div><div class="title">express主页右边路由渲染页面and向数据库添加数据</div></div></a></div><div><a href="/2023/06/15/cms/NodeExpress/Layout/paging/" title="express主页右边分页and逻辑"><img class="cover" src="https://img-baofun.zhhainiao.com/pcwallpaper_ugc/live/20d6897784153dc51cc584fe2616398f.mp4.jpg?x-oss-process=image/resize,type_4,m_fill,h_228,w_406/quality,Q_90" alt="cover"><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2023-06-15</div><div class="title">express主页右边分页and逻辑</div></div></a></div><div><a href="/2023/06/16/cms/NodeExpress/Layout/inputSearch/" title="express主页实现搜索功能"><img class="cover" src="https://i.pinimg.com/736x/ec/83/f3/ec83f317275891af2fc5ee5d71bf8378.jpg" alt="cover"><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2023-06-16</div><div class="title">express主页实现搜索功能</div></div></a></div></div></div></div><div class="aside-content" id="aside-content"><div class="card-widget card-info"><div class="is-center"><div class="avatar-img"><img src="https://tupian.qqw21.com/article/UploadPic/2020-7/202071523123939850.jpg" onerror="this.onerror=null;this.src='/img/friend_404.gif'" alt="avatar"/></div><div class="author-info__name">xxiaomin</div><div class="author-info__description">搞怪一点,生活才会有乐趣呀！</div></div><div class="card-info-data site-data is-center"><a href="/archives/"><div class="headline">文章</div><div class="length-num">14</div></a><a href="/tags/"><div class="headline">标签</div><div class="length-num">11</div></a><a href="/categories/"><div class="headline">分类</div><div class="length-num">7</div></a></div><a id="card-info-btn" href="https://xxiaomin.github.io/"><i class="fab fa-github"></i><span>Follow Me</span></a><div class="card-info-social-icons is-center"><a class="social-icon" href="https://github.com/xxiaomin" target="_blank" title="Github"><i class="fab fa-github"></i></a><a class="social-icon" href="/1218220208@qq.com" target="_blank" title="Email"><i class="fas fa-envelope"></i></a></div></div><div class="card-widget card-announcement"><div class="item-headline"><i class="fas fa-bullhorn fa-shake"></i><span>公告</span></div><div class="announcement_content">This is my Blog</div></div><div class="sticky_layout"><div class="card-widget" id="card-toc"><div class="item-headline"><i class="fas fa-stream"></i><span>目录</span><span class="toc-percentage"></span></div><div class="toc-content"><ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%86%99%E5%88%A0%E9%99%A4%E5%AF%B9%E8%AF%9D%E6%A1%86"><span class="toc-number">1.</span> <span class="toc-text">写删除对话框</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%82%B9%E5%87%BB%E5%88%A0%E9%99%A4%E6%8C%89%E9%92%AE%E4%BC%A0%E4%B8%80%E4%B8%AAid%E5%80%BC"><span class="toc-number">2.</span> <span class="toc-text">点击删除按钮传一个id值</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%8A%9F%E8%83%BD"><span class="toc-number">3.</span> <span class="toc-text">功能</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E7%82%B9%E5%87%BB%E5%BC%B9%E5%87%BA%E5%88%A0%E9%99%A4%E6%A1%86"><span class="toc-number">3.1.</span> <span class="toc-text">点击弹出删除框</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%8F%96%E6%B6%88%EF%BC%8C%E7%A1%AE%E5%AE%9A%E6%8C%89%E9%92%AE"><span class="toc-number">3.2.</span> <span class="toc-text">取消，确定按钮</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%88%A0%E9%99%A4%E6%8F%90%E4%BA%A4%E7%9A%84%E5%9C%B0%E6%96%B9"><span class="toc-number">4.</span> <span class="toc-text">删除提交的地方</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E9%81%87%E5%88%B0%E7%9A%84%E4%B8%80%E4%B8%AA%E6%B7%BB%E5%8A%A0%E5%9B%BE%E7%89%87Bug"><span class="toc-number">5.</span> <span class="toc-text">遇到的一个添加图片Bug</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%85%B6%E4%BB%96%E9%83%A8%E5%88%86"><span class="toc-number">6.</span> <span class="toc-text">其他部分</span></a></li></ol></div></div><div class="card-widget card-recent-post"><div class="item-headline"><i class="fas fa-history"></i><span>最新文章</span></div><div class="aside-list"><div class="aside-list-item"><a class="thumbnail" href="/2023/06/16/cms/NodeExpress/Layout/deleteItem/" title="express主页删除数据库数据"><img src="https://i.pinimg.com/originals/ba/38/ed/ba38edcabead4a6d1dc41b02e0453d69.jpg" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="express主页删除数据库数据"/></a><div class="content"><a class="title" href="/2023/06/16/cms/NodeExpress/Layout/deleteItem/" title="express主页删除数据库数据">express主页删除数据库数据</a><time datetime="2023-06-16T09:56:32.582Z" title="发表于 2023-06-16 17:56:32">2023-06-16</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2023/06/16/cms/NodeExpress/Layout/inputSearch/" title="express主页实现搜索功能"><img src="https://i.pinimg.com/736x/ec/83/f3/ec83f317275891af2fc5ee5d71bf8378.jpg" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="express主页实现搜索功能"/></a><div class="content"><a class="title" href="/2023/06/16/cms/NodeExpress/Layout/inputSearch/" title="express主页实现搜索功能">express主页实现搜索功能</a><time datetime="2023-06-16T08:19:53.920Z" title="发表于 2023-06-16 16:19:53">2023-06-16</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2023/06/15/cms/NodeExpress/Layout/paging/" title="express主页右边分页and逻辑"><img src="https://img-baofun.zhhainiao.com/pcwallpaper_ugc/live/20d6897784153dc51cc584fe2616398f.mp4.jpg?x-oss-process=image/resize,type_4,m_fill,h_228,w_406/quality,Q_90" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="express主页右边分页and逻辑"/></a><div class="content"><a class="title" href="/2023/06/15/cms/NodeExpress/Layout/paging/" title="express主页右边分页and逻辑">express主页右边分页and逻辑</a><time datetime="2023-06-15T14:48:09.590Z" title="发表于 2023-06-15 22:48:09">2023-06-15</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2023/06/15/interviewQuestion/promise/promise.all/" title="promise.all(面试题)"><img src="https://th.bing.com/th/id/R.ac3f7768cf4bed6c7836a77f1d821121?rik=N1zOvAHOTo%2flBQ&amp;riu=http%3a%2f%2fpic.nipic.com%2f2008-01-20%2f20081201086994_2.jpg&amp;ehk=1E9BwdjIybYfnxltrvTUR6c3%2fKyu7qymKJZLzenmy2Y%3d&amp;risl=&amp;pid=ImgRaw&amp;r=0" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="promise.all(面试题)"/></a><div class="content"><a class="title" href="/2023/06/15/interviewQuestion/promise/promise.all/" title="promise.all(面试题)">promise.all(面试题)</a><time datetime="2023-06-15T07:50:38.763Z" title="发表于 2023-06-15 15:50:38">2023-06-15</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2023/06/12/cms/NodeExpress/Layout/rightPage/" title="express主页右边路由渲染页面and向数据库添加数据"><img src="https://ts1.cn.mm.bing.net/th/id/R-C.160961c23d8fc21981cce7b44f007d2b?rik=H5U00eqBc2WlDA&amp;riu=http%3a%2f%2fup.bizhizu.com%2fpic_360%2f13%2fcc%2f97%2f13cc97f2f9471139dfa4e044e18269e8.jpg&amp;ehk=BGHyhMRx12zVjswRvlQ9JP9YnNbwqBfESNEKoF%2bwpE4%3d&amp;risl=&amp;pid=ImgRaw&amp;r=0" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="express主页右边路由渲染页面and向数据库添加数据"/></a><div class="content"><a class="title" href="/2023/06/12/cms/NodeExpress/Layout/rightPage/" title="express主页右边路由渲染页面and向数据库添加数据">express主页右边路由渲染页面and向数据库添加数据</a><time datetime="2023-06-12T09:17:33.691Z" title="发表于 2023-06-12 17:17:33">2023-06-12</time></div></div></div></div></div></div></main><footer id="footer" style="background-image: url('https://i.pinimg.com/originals/ba/38/ed/ba38edcabead4a6d1dc41b02e0453d69.jpg')"><div id="footer-wrap"><div class="copyright">&copy;2023 By xxiaomin</div><div class="footer_custom_text">Glad to meet you</div></div></footer></div><div id="rightside"><div id="rightside-config-hide"><button id="readmode" type="button" title="阅读模式"><i class="fas fa-book-open"></i></button><button id="darkmode" type="button" title="浅色和深色模式转换"><i class="fas fa-adjust"></i></button><button id="hide-aside-btn" type="button" title="单栏和双栏切换"><i class="fas fa-arrows-alt-h"></i></button></div><div id="rightside-config-show"><button id="rightside_config" type="button" title="设置"><i class="fas fa-cog fa-spin"></i></button><button class="close" id="mobile-toc-button" type="button" title="目录"><i class="fas fa-list-ul"></i></button><button id="chat_btn" type="button" title="聊天"><i class="fas fa-sms"></i></button><button id="go-up" type="button" title="回到顶部"><span class="scroll-percent"></span><i class="fas fa-arrow-up"></i></button></div></div><div><script src="/js/utils.js"></script><script src="/js/main.js"></script><script src="https://cdn.jsdelivr.net/npm/@fancyapps/ui/dist/fancybox/fancybox.umd.min.js"></script><div class="js-pjax"></div><div><canvas id="snow" style="position:fixed;top:0;left:0;width:100%;height:100%;z-index:99999;pointer-events:none"></canvas></div><script>const notMobile = (!(navigator.userAgent.match(/(phone|pad|pod|iPhone|iPod|ios|iPad|Android|Mobile|BlackBerry|IEMobile|MQQBrowser|JUC|Fennec|wOSBrowser|BrowserNG|WebOS|Symbian|Windows Phone)/i)));</script><script async type="text/javascript" src="https://cdn.jsdelivr.net/gh/Candinya/Kratos-Rebirth@latest/source/js/snow.min.js"></script><script id="canvas_nest" defer="defer" color="159,135,207" opacity="0.7" zIndex="-1" count="300" mobile="false" src="https://cdn.jsdelivr.net/npm/butterfly-extsrc/dist/canvas-nest.min.js"></script><script src="https://cdn.jsdelivr.net/npm/butterfly-extsrc/dist/activate-power-mode.min.js"></script><script>POWERMODE.colorful = true;
+POWERMODE.shake = false;
+POWERMODE.mobile = false;
+document.body.addEventListener('input', POWERMODE);
+</script><script id="click-show-text" src="https://cdn.jsdelivr.net/npm/butterfly-extsrc/dist/click-show-text.min.js" data-mobile="false" data-text="Funny ~,Happy ~,Hello ~" data-fontsize="15px" data-random="true" async="async"></script><script async data-pjax src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script></div><script src="/live2dw/lib/L2Dwidget.min.js?094cbace49a39548bed64abff5988b05"></script><script>L2Dwidget.init({"pluginModelPath":"assets/","model":{"jsonPath":"/live2dw/assets/tororo.model.json"},"display":{"position":"left","width":270,"height":420,"hOffset":10,"vOffset":-80},"mobile":{"show":false},"rect":{"opacity":0.65},"log":false,"pluginJsPath":"lib/","pluginRootPath":"live2dw/","tagMode":false});</script></body></html>
