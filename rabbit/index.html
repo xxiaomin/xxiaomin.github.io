@@ -143,6 +143,12 @@
               :key="index"
               @mouseenter="xianChu(index)"
             >
+            <!-- xianChu(i) {
+              this.leftList.forEach((element) => {
+                element.current = false
+              })
+              this.leftList[i].current = true
+            }, -->
               <li>
                 <a href="javascript:;">
                   {{ item.aname }}
@@ -175,36 +181,17 @@
         <li>
           <a href="javascript:;">
             <img :src="dataList[currentIndex]" />
+            <!-- dataList: [
+            './images/b1.jpg',
+            './images/b2.jpg',
+            './images/b3.jpg',
+            './images/b4.jpg',
+            './images/b5.jpg'
+          ], -->
+          <!-- currentIndex: 0, // 默认显示图片 -->
           </a>
         </li>
       </ul>
-      <!-- <ul>
-        <li>
-          <a href="javascript:;" >
-            <img src="./images/b1.jpg" />
-          </a>
-        </li>
-        <li>
-          <a href="javascript:;" >
-            <img src="./images/b2.jpg" />
-          </a>
-        </li>
-        <li>
-          <a href="javascript:;" >
-            <img src="./images/b3.jpg" />
-          </a>
-        </li>
-        <li>
-          <a href="javascript:;" >
-            <img src="./images/b4.jpg" />
-          </a>
-        </li>
-        <li>
-          <a href="javascript:;" >
-            <img src="./images/b5.jpg" />
-          </a>
-        </li>
-      </ul> -->
       <!-- 切换按钮  -->
       <a
         href="javascript:;"
@@ -212,6 +199,9 @@
         id="prev" 
         @click="gotoPage(prevIndex)"      
       ></a>
+      <!-- gotoPage(index) {
+        this.currentIndex = index
+      } -->
       <a
         href="javascript:; "
         class="next sprites"
@@ -226,6 +216,22 @@
               :class="{ active: currentIndex === index }"
             ></span>
       </div>
+      <!-- // 上一张
+      prevIndex() {
+        if (this.currentIndex === 0) {
+          return this.dataList.length - 1
+        } else {
+          return this.currentIndex - 1
+        }
+      },
+      // 下一张
+      nextIndex() {
+        if (this.currentIndex === this.dataList.length - 1) {
+          return 0
+        } else {
+          return this.currentIndex + 1
+        }
+      } -->
       <!-- 指示器小白点 -->
       <!-- <div class="indicator">
         <span class="active"></span>

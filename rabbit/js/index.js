@@ -207,7 +207,8 @@ const vm = new Vue({
   computed: {
     hasData() {
       return !this.List.length
-    }, // 上一张
+    },
+    // 上一张
     prevIndex() {
       if (this.currentIndex === 0) {
         return this.dataList.length - 1
