@@ -1,0 +1,215 @@
+<!DOCTYPE html><html lang="zh-CN" data-theme="light"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0,viewport-fit=cover"><title>Electron-主进程Api - second | XxiaoMin Blog</title><meta name="author" content="xxiaomin"><meta name="copyright" content="xxiaomin"><meta name="format-detection" content="telephone=no"><meta name="theme-color" content="#ffffff"><meta name="description" content="dialog-对话框 显示用于打开和保存文件、警报等的本机系统对话框 触发事件，出现对话框-其实就是磁盘文件 选择一个或多个文件  const &amp;#123;app, BrowserWindow, dialog&amp;#125; &#x3D; require(&amp;#x27;electron&amp;#x27;)win.webContents.on(&amp;#x27;did-finish-load&amp;#x27;, () &#x3D;. &amp;#12">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Electron-主进程Api - second">
+<meta property="og:url" content="https://xxiaomin.github.io/2023/08/21/electron/five_mainProcessApi/index.html">
+<meta property="og:site_name" content="XxiaoMin Blog">
+<meta property="og:description" content="dialog-对话框 显示用于打开和保存文件、警报等的本机系统对话框 触发事件，出现对话框-其实就是磁盘文件 选择一个或多个文件  const &amp;#123;app, BrowserWindow, dialog&amp;#125; &#x3D; require(&amp;#x27;electron&amp;#x27;)win.webContents.on(&amp;#x27;did-finish-load&amp;#x27;, () &#x3D;. &amp;#12">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://th.bing.com/th/id/R.99ccc237895a8ed6113302105b885646?rik=rcBH2c2j1Y%2fp4Q&riu=http%3a%2f%2fi1.img.969g.com%2fdown%2fimgx2013%2f10%2f23%2f255_110719_818fe.jpg&ehk=VAAweGx8R7XjZrI4lbja8%2fK%2bxLh1WTaiqTdZtiBtuZk%3d&risl=&pid=ImgRaw&r=0">
+<meta property="article:published_time" content="2023-08-21T02:39:37.088Z">
+<meta property="article:modified_time" content="2023-08-22T03:42:45.419Z">
+<meta property="article:author" content="xxiaomin">
+<meta property="article:tag" content="electron">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://th.bing.com/th/id/R.99ccc237895a8ed6113302105b885646?rik=rcBH2c2j1Y%2fp4Q&riu=http%3a%2f%2fi1.img.969g.com%2fdown%2fimgx2013%2f10%2f23%2f255_110719_818fe.jpg&ehk=VAAweGx8R7XjZrI4lbja8%2fK%2bxLh1WTaiqTdZtiBtuZk%3d&risl=&pid=ImgRaw&r=0"><link rel="shortcut icon" href="/img/logo2.png"><link rel="canonical" href="https://xxiaomin.github.io/2023/08/21/electron/five_mainProcessApi/index.html"><link rel="preconnect" href="//cdn.jsdelivr.net"/><link rel="preconnect" href="//busuanzi.ibruce.info"/><link rel="stylesheet" href="/css/index.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free/css/all.min.css" media="print" onload="this.media='all'"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/ui/dist/fancybox/fancybox.min.css" media="print" onload="this.media='all'"><script>const GLOBAL_CONFIG = { 
+  root: '/',
+  algolia: undefined,
+  localSearch: undefined,
+  translate: undefined,
+  noticeOutdate: undefined,
+  highlight: {"plugin":"highlighjs","highlightCopy":true,"highlightLang":true,"highlightHeightLimit":50},
+  copy: {
+    success: '复制成功',
+    error: '复制错误',
+    noSupport: '浏览器不支持'
+  },
+  relativeDate: {
+    homepage: false,
+    post: false
+  },
+  runtime: '',
+  date_suffix: {
+    just: '刚刚',
+    min: '分钟前',
+    hour: '小时前',
+    day: '天前',
+    month: '个月前'
+  },
+  copyright: undefined,
+  lightbox: 'fancybox',
+  Snackbar: undefined,
+  source: {
+    justifiedGallery: {
+      js: 'https://cdn.jsdelivr.net/npm/flickr-justified-gallery/dist/fjGallery.min.js',
+      css: 'https://cdn.jsdelivr.net/npm/flickr-justified-gallery/dist/fjGallery.min.css'
+    }
+  },
+  isPhotoFigcaption: false,
+  islazyload: false,
+  isAnchor: false,
+  percent: {
+    toc: true,
+    rightside: true,
+  }
+}</script><script id="config-diff">var GLOBAL_CONFIG_SITE = {
+  title: 'Electron-主进程Api - second',
+  isPost: true,
+  isHome: false,
+  isHighlightShrink: false,
+  isToc: true,
+  postUpdate: '2023-08-22 11:42:45'
+}</script><noscript><style type="text/css">
+  #nav {
+    opacity: 1
+  }
+  .justified-gallery img {
+    opacity: 1
+  }
+
+  #recent-posts time,
+  #post-meta time {
+    display: inline !important
+  }
+</style></noscript><script>(win=>{
+    win.saveToLocal = {
+      set: function setWithExpiry(key, value, ttl) {
+        if (ttl === 0) return
+        const now = new Date()
+        const expiryDay = ttl * 86400000
+        const item = {
+          value: value,
+          expiry: now.getTime() + expiryDay,
+        }
+        localStorage.setItem(key, JSON.stringify(item))
+      },
+
+      get: function getWithExpiry(key) {
+        const itemStr = localStorage.getItem(key)
+
+        if (!itemStr) {
+          return undefined
+        }
+        const item = JSON.parse(itemStr)
+        const now = new Date()
+
+        if (now.getTime() > item.expiry) {
+          localStorage.removeItem(key)
+          return undefined
+        }
+        return item.value
+      }
+    }
+  
+    win.getScript = url => new Promise((resolve, reject) => {
+      const script = document.createElement('script')
+      script.src = url
+      script.async = true
+      script.onerror = reject
+      script.onload = script.onreadystatechange = function() {
+        const loadState = this.readyState
+        if (loadState && loadState !== 'loaded' && loadState !== 'complete') return
+        script.onload = script.onreadystatechange = null
+        resolve()
+      }
+      document.head.appendChild(script)
+    })
+  
+    win.getCSS = (url,id = false) => new Promise((resolve, reject) => {
+      const link = document.createElement('link')
+      link.rel = 'stylesheet'
+      link.href = url
+      if (id) link.id = id
+      link.onerror = reject
+      link.onload = link.onreadystatechange = function() {
+        const loadState = this.readyState
+        if (loadState && loadState !== 'loaded' && loadState !== 'complete') return
+        link.onload = link.onreadystatechange = null
+        resolve()
+      }
+      document.head.appendChild(link)
+    })
+  
+      win.activateDarkMode = function () {
+        document.documentElement.setAttribute('data-theme', 'dark')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#0d0d0d')
+        }
+      }
+      win.activateLightMode = function () {
+        document.documentElement.setAttribute('data-theme', 'light')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#ffffff')
+        }
+      }
+      const t = saveToLocal.get('theme')
+    
+          if (t === 'dark') activateDarkMode()
+          else if (t === 'light') activateLightMode()
+        
+      const asideStatus = saveToLocal.get('aside-status')
+      if (asideStatus !== undefined) {
+        if (asideStatus === 'hide') {
+          document.documentElement.classList.add('hide-aside')
+        } else {
+          document.documentElement.classList.remove('hide-aside')
+        }
+      }
+    
+    const detectApple = () => {
+      if(/iPad|iPhone|iPod|Macintosh/.test(navigator.userAgent)){
+        document.documentElement.classList.add('apple')
+      }
+    }
+    detectApple()
+    })(window)</script><style>#article-container.post-content h1:before, h2:before, h3:before, h4:before, h5:before, h6:before { -webkit-animation: avatar_turn_around 1s linear infinite; -moz-animation: avatar_turn_around 1s linear infinite; -o-animation: avatar_turn_around 1s linear infinite; -ms-animation: avatar_turn_around 1s linear infinite; animation: avatar_turn_around 1s linear infinite; }</style><meta name="generator" content="Hexo 6.3.0"></head><body><div id="loading-box"><div class="loading-left-bg"></div><div class="loading-right-bg"></div><div class="spinner-box"><div class="configure-border-1"><div class="configure-core"></div></div><div class="configure-border-2"><div class="configure-core"></div></div><div class="loading-word">加载中...</div></div></div><script>const preloader = {
+  endLoading: () => {
+    document.body.style.overflow = '';
+    document.getElementById('loading-box').classList.add("loaded")
+  },
+  initLoading: () => {
+    document.body.style.overflow = 'hidden';
+    document.getElementById('loading-box').classList.remove("loaded")
+  }
+}
+
+preloader.initLoading()
+window.addEventListener('load',()=> { preloader.endLoading() })
+
+if (false) {
+  document.addEventListener('pjax:send', () => { preloader.initLoading() })
+  document.addEventListener('pjax:complete', () => { preloader.endLoading() })
+}</script><div id="sidebar"><div id="menu-mask"></div><div id="sidebar-menus"><div class="avatar-img is-center"><img src="https://tupian.qqw21.com/article/UploadPic/2020-7/202071523123939850.jpg" onerror="onerror=null;src='/img/friend_404.gif'" alt="avatar"/></div><div class="sidebar-site-data site-data is-center"><a href="/archives/"><div class="headline">文章</div><div class="length-num">27</div></a><a href="/tags/"><div class="headline">标签</div><div class="length-num">14</div></a><a href="/categories/"><div class="headline">分类</div><div class="length-num">13</div></a></div><hr/><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 主页</span></a></div><div class="menus_item"><a class="site-page" href="/archives/"><i class="fa-fw fas fa-archive"></i><span> Archives</span></a></div><div class="menus_item"><a class="site-page" href="/resume/"><i class="fa-fw fas fa-heart"></i><span> 个人简历</span></a></div><div class="menus_item"><a class="site-page" href="/tags/"><i class="fa-fw fas fa-tags"></i><span> 标签</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> 分类</span></a></div><div class="menus_item"><a class="site-page group" href="javascript:void(0);"><i class="fa-fw fas fa-list"></i><span> 链接</span><i class="fas fa-chevron-down"></i></a><ul class="menus_item_child"><li><a class="site-page child" href="/link/"><i class="fa-fw fas fa-link"></i><span> 友情链接</span></a></li><li><a class="site-page child" href="/about/"><i class="fa-fw fas fa-heart"></i><span> 关于</span></a></li></ul></div></div></div></div><div class="post" id="body-wrap"><header class="post-bg" id="page-header" style="background-image: url('https://th.bing.com/th/id/R.99ccc237895a8ed6113302105b885646?rik=rcBH2c2j1Y%2fp4Q&amp;riu=http%3a%2f%2fi1.img.969g.com%2fdown%2fimgx2013%2f10%2f23%2f255_110719_818fe.jpg&amp;ehk=VAAweGx8R7XjZrI4lbja8%2fK%2bxLh1WTaiqTdZtiBtuZk%3d&amp;risl=&amp;pid=ImgRaw&amp;r=0')"><nav id="nav"><span id="blog-info"><a href="/" title="XxiaoMin Blog"><img class="site-icon" src="/img/logo2.png"/><span class="site-name">XxiaoMin Blog</span></a></span><div id="menus"><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 主页</span></a></div><div class="menus_item"><a class="site-page" href="/archives/"><i class="fa-fw fas fa-archive"></i><span> Archives</span></a></div><div class="menus_item"><a class="site-page" href="/resume/"><i class="fa-fw fas fa-heart"></i><span> 个人简历</span></a></div><div class="menus_item"><a class="site-page" href="/tags/"><i class="fa-fw fas fa-tags"></i><span> 标签</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> 分类</span></a></div><div class="menus_item"><a class="site-page group" href="javascript:void(0);"><i class="fa-fw fas fa-list"></i><span> 链接</span><i class="fas fa-chevron-down"></i></a><ul class="menus_item_child"><li><a class="site-page child" href="/link/"><i class="fa-fw fas fa-link"></i><span> 友情链接</span></a></li><li><a class="site-page child" href="/about/"><i class="fa-fw fas fa-heart"></i><span> 关于</span></a></li></ul></div></div><div id="toggle-menu"><a class="site-page" href="javascript:void(0);"><i class="fas fa-bars fa-fw"></i></a></div></div></nav><div id="post-info"><h1 class="post-title">Electron-主进程Api - second</h1><div id="post-meta"><div class="meta-firstline"><span class="post-meta-date"><i class="far fa-calendar-alt fa-fw post-meta-icon"></i><span class="post-meta-label">发表于</span><time class="post-meta-date-created" datetime="2023-08-21T02:39:37.088Z" title="发表于 2023-08-21 10:39:37">2023-08-21</time><span class="post-meta-separator">|</span><i class="fas fa-history fa-fw post-meta-icon"></i><span class="post-meta-label">更新于</span><time class="post-meta-date-updated" datetime="2023-08-22T03:42:45.419Z" title="更新于 2023-08-22 11:42:45">2023-08-22</time></span><span class="post-meta-categories"><span class="post-meta-separator">|</span><i class="fas fa-inbox fa-fw post-meta-icon"></i><a class="post-meta-categories" href="/categories/electron/">electron</a><i class="fas fa-angle-right post-meta-separator"></i><i class="fas fa-inbox fa-fw post-meta-icon"></i><a class="post-meta-categories" href="/categories/electron/%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/">学习笔记</a><i class="fas fa-angle-right post-meta-separator"></i><i class="fas fa-inbox fa-fw post-meta-icon"></i><a class="post-meta-categories" href="/categories/electron/%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/Electron%E6%A0%B8%E5%BF%83%E6%A6%82%E5%BF%B5/">Electron核心概念</a></span></div><div class="meta-secondline"><span class="post-meta-separator">|</span><span class="post-meta-pv-cv" id="" data-flag-title="Electron-主进程Api - second"><i class="far fa-eye fa-fw post-meta-icon"></i><span class="post-meta-label">阅读量:</span><span id="busuanzi_value_page_pv"><i class="fa-solid fa-spinner fa-spin"></i></span></span></div></div></div></header><main class="layout" id="content-inner"><div id="post"><article class="post-content" id="article-container"><h2 id="dialog-对话框"><a href="#dialog-对话框" class="headerlink" title="dialog-对话框"></a>dialog-对话框</h2><ul>
+<li>显示用于打开和保存文件、警报等的本机系统对话框</li>
+<li>触发事件，出现对话框-其实就是磁盘文件</li>
+<li>选择一个或多个文件</li>
+</ul>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">const &#123;app, BrowserWindow, dialog&#125; = require(&#x27;electron&#x27;)</span><br><span class="line">win.webContents.on(&#x27;did-finish-load&#x27;, () =. &#123;</span><br><span class="line">dialog.showOpenDialog(&#123;</span><br><span class="line">buttonLabel: &#x27;选择&#x27;,//可以改，确定按钮的名字</span><br><span class="line">defaultPath: app.getPath(&#x27;desktop&#x27;),//本地应用的路径，可以写music</span><br><span class="line">properties: [&#x27;multiSelections&#x27;多选, &#x27;createDirectory&#x27;创建, &#x27;openFile&#x27;, &#x27;openDirectory&#x27;打开文件]</span><br><span class="line">&#125;).then((result)=. &#123;</span><br><span class="line">//console.log(result.filepaths)//undefind</span><br><span class="line">//console.log(result)获取路径</span><br><span class="line"></span><br><span class="line">&#125;)</span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure>
+<ul>
+<li>获取存储文件</li>
+</ul>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">dialog.showSaveDialog(&#123;&#125;).then(result =. &#123;</span><br><span class="line">console.log(result.filePath)</span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>弹出信息窗口(接近于原生，操作系统自带，不是我们写的)</li>
+<li>可改为中文<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">const answers = [&#x27;Yes&#x27;, &#x27;No&#x27;, &#x27;Maybe&#x27;]按钮的值</span><br><span class="line">dialog.showMessageBox(&#123;</span><br><span class="line">title: &#x27;Message Box&#x27;,//标题</span><br><span class="line">message: &#x27;Please select an option&#x27;,//解析作用</span><br><span class="line">detail: &#x27;Message details.&#x27;,</span><br><span class="line">buttons: answers</span><br><span class="line">&#125;).then((&#123;response&#125;) =. &#123;</span><br><span class="line">console.log(`User selected: $&#123;answers[response]&#125;`)获取按钮值</span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure></li>
+<li>具体位置</li>
+</ul>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">const path = require(&#x27;path&#x27;)</span><br><span class="line">const &#123; app, BrowserWindow, ipcMain, dialog &#125; = require(&#x27;electron&#x27;)</span><br><span class="line">const WinState = require(&#x27;electron-win-state&#x27;).default</span><br><span class="line">// 主进程</span><br><span class="line">const createWindow = () =&gt; &#123;</span><br><span class="line">  const winState = new WinState(&#123;</span><br><span class="line">    defaultWidth: 800,</span><br><span class="line">    defaultHeight: 600</span><br><span class="line">    // other winState options, see below</span><br><span class="line">  &#125;)</span><br><span class="line">  const win = new BrowserWindow(&#123;</span><br><span class="line">    ...winState.winOptions,</span><br><span class="line">    backgroundColor: &#x27;#6435c9&#x27;,</span><br><span class="line">    webPreferences: &#123;</span><br><span class="line">      // dirname当前入口文件的绝对物理路径+相对路径</span><br><span class="line">      preload: path.resolve(__dirname, &#x27;./preload.js&#x27;)</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;)</span><br><span class="line">  const wc = win.webContents</span><br><span class="line">  //全部加载完毕</span><br><span class="line">  wc.on(&#x27;did-finish-load&#x27;, () =&gt; &#123;</span><br><span class="line">    console.log(&#x27;Conent fully loaded&#x27;)</span><br><span class="line">  &#125;)</span><br><span class="line">  //dom加载完毕</span><br><span class="line">  wc.on(&#x27;dom-ready&#x27;, () =&gt; &#123;</span><br><span class="line">    console.log(&#x27;DOM Ready&#x27;)</span><br><span class="line">  &#125;)</span><br><span class="line">  //鼠标右键，保存图片</span><br><span class="line">  wc.on(&#x27;context-menu&#x27;, (e, params) =&gt; &#123;</span><br><span class="line">    // console.log(params)</span><br><span class="line">    //-------------------------------------------------------</span><br><span class="line">    // dialog</span><br><span class="line">    //   .showOpenDialog(&#123;</span><br><span class="line">    //     buttonLabel: &#x27;选择&#x27;,</span><br><span class="line">    //     defaultPath: app.getPath(&#x27;desktop&#x27;),</span><br><span class="line">    //     properties: [</span><br><span class="line">    //       &#x27;multiSelections&#x27;,</span><br><span class="line">    //       &#x27;createDirectory&#x27;,</span><br><span class="line">    //       &#x27;openFile&#x27;,</span><br><span class="line">    //       &#x27;openDirectory&#x27;</span><br><span class="line">    //     ]</span><br><span class="line">    //   &#125;)</span><br><span class="line">    //   .then((result) =&gt; &#123;</span><br><span class="line">    //     // console.log(result.filepaths)</span><br><span class="line">    //     console.log(result)</span><br><span class="line">    //   &#125;)</span><br><span class="line">    //-------------------------------------------------------</span><br><span class="line">    // dialog.showSaveDialog(&#123;&#125;).then((result) =&gt; &#123;</span><br><span class="line">    //   console.log(result.filePath)</span><br><span class="line">    // &#125;)</span><br><span class="line">    //-------------------------------------------------------</span><br><span class="line">    const answers = [&#x27;Yes&#x27;, &#x27;No&#x27;, &#x27;Maybe&#x27;]</span><br><span class="line">    dialog</span><br><span class="line">      .showMessageBox(&#123;</span><br><span class="line">        title: &#x27;Message Box&#x27;, //标题</span><br><span class="line">        message: &#x27;Please select an option&#x27;, //解析作用</span><br><span class="line">        detail: &#x27;Message details.&#x27;,</span><br><span class="line">        buttons: answers</span><br><span class="line">      &#125;)</span><br><span class="line">      .then((&#123; response &#125;) =&gt; &#123;</span><br><span class="line">        console.log(`User selected: $&#123;answers[response]&#125;`)</span><br><span class="line">      &#125;)</span><br><span class="line"></span><br><span class="line">    //-------------------------------------------------------</span><br><span class="line">    // wc.executeJavaScript(`alert(&#x27;$&#123;params.selectionText&#125;&#x27;)`)</span><br><span class="line">  &#125;)</span><br><span class="line">  wc.openDevTools()</span><br><span class="line">  win.loadFile(&#x27;./index.html&#x27;)</span><br><span class="line">  winState.manage(win)</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h2 id="快捷键-系统快捷键（键盘）"><a href="#快捷键-系统快捷键（键盘）" class="headerlink" title="快捷键-系统快捷键（键盘）"></a>快捷键-系统快捷键（键盘）</h2><ul>
+<li>快捷键：定义键盘快捷键</li>
+<li>系统快捷键：在应用程序没有焦点时，监听键盘事件</li>
+<li>快捷键使用register方法在globalShortcut模块中注册</li>
+<li>globalShortcut模块可以在操作系统中注册&#x2F;注销全局快捷键, 以便可以为操作定制各种快捷键。</li>
+<li>注意: 快捷方式是全局的; 即使应用程序没有键盘焦点, 它也仍然在持续监听键盘事件。 在应用程序模块发出 ready<br>事件之前, 不应使用此模块。</li>
+</ul>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">// globalShortcut.register(&#x27;G&#x27;, () =&gt; &#123;</span><br><span class="line">  //   console.log(&#x27;user&#x27;)</span><br><span class="line">  // &#125;)</span><br><span class="line"> //----------------------- globalShortcut.register(&#x27;CommandOrControl+Y&#x27;, () =&gt; &#123;</span><br><span class="line">    console.log(&#x27;user&#x27;)</span><br><span class="line">    globalShortcut.unregister(&#x27;CommandOrControl+Y&#x27;)</span><br><span class="line">  &#125;)</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>具体位置</li>
+</ul>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">const path = require(&#x27;path&#x27;)</span><br><span class="line">const &#123;</span><br><span class="line">  app,</span><br><span class="line">  BrowserWindow,</span><br><span class="line">  ipcMain,</span><br><span class="line">  dialog,</span><br><span class="line">  globalShortcut</span><br><span class="line">&#125; = require(&#x27;electron&#x27;)</span><br><span class="line">const WinState = require(&#x27;electron-win-state&#x27;).default</span><br><span class="line">// 主进程</span><br><span class="line">const createWindow = () =&gt; &#123;</span><br><span class="line">  const winState = new WinState(&#123;</span><br><span class="line">    defaultWidth: 800,</span><br><span class="line">    defaultHeight: 600</span><br><span class="line">    // other winState options, see below</span><br><span class="line">  &#125;)</span><br><span class="line">  const win = new BrowserWindow(&#123;</span><br><span class="line">    ...winState.winOptions,</span><br><span class="line">    backgroundColor: &#x27;#6435c9&#x27;,</span><br><span class="line">    webPreferences: &#123;</span><br><span class="line">      // dirname当前入口文件的绝对物理路径+相对路径</span><br><span class="line">      preload: path.resolve(__dirname, &#x27;./preload.js&#x27;)</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;)</span><br><span class="line">  const wc = win.webContents</span><br><span class="line">  //全部加载完毕</span><br><span class="line">  wc.on(&#x27;did-finish-load&#x27;, () =&gt; &#123;</span><br><span class="line">    console.log(&#x27;Conent fully loaded&#x27;)</span><br><span class="line">  &#125;)</span><br><span class="line">  //dom加载完毕</span><br><span class="line">  wc.on(&#x27;dom-ready&#x27;, () =&gt; &#123;</span><br><span class="line">    console.log(&#x27;DOM Ready&#x27;)</span><br><span class="line">  &#125;)</span><br><span class="line">  //鼠标右键，保存图片</span><br><span class="line">  wc.on(&#x27;context-menu&#x27;, (e, params) =&gt; &#123;</span><br><span class="line">    // console.log(params)</span><br><span class="line">    //-------------------------------------------------------</span><br><span class="line">    // dialog</span><br><span class="line">    //   .showOpenDialog(&#123;</span><br><span class="line">    //     buttonLabel: &#x27;选择&#x27;,</span><br><span class="line">    //     defaultPath: app.getPath(&#x27;desktop&#x27;),</span><br><span class="line">    //     properties: [</span><br><span class="line">    //       &#x27;multiSelections&#x27;,</span><br><span class="line">    //       &#x27;createDirectory&#x27;,</span><br><span class="line">    //       &#x27;openFile&#x27;,</span><br><span class="line">    //       &#x27;openDirectory&#x27;</span><br><span class="line">    //     ]</span><br><span class="line">    //   &#125;)</span><br><span class="line">    //   .then((result) =&gt; &#123;</span><br><span class="line">    //     // console.log(result.filepaths)</span><br><span class="line">    //     console.log(result)</span><br><span class="line">    //   &#125;)</span><br><span class="line">    //-------------------------------------------------------</span><br><span class="line">    // dialog.showSaveDialog(&#123;&#125;).then((result) =&gt; &#123;</span><br><span class="line">    //   console.log(result.filePath)</span><br><span class="line">    // &#125;)</span><br><span class="line">    //-------------------------------------------------------</span><br><span class="line">    const answers = [&#x27;Yes&#x27;, &#x27;No&#x27;, &#x27;Maybe&#x27;]</span><br><span class="line">    dialog</span><br><span class="line">      .showMessageBox(&#123;</span><br><span class="line">        title: &#x27;Message Box&#x27;, //标题</span><br><span class="line">        message: &#x27;Please select an option&#x27;, //解析作用</span><br><span class="line">        detail: &#x27;Message details.&#x27;,</span><br><span class="line">        buttons: answers</span><br><span class="line">      &#125;)</span><br><span class="line">      .then((&#123; response &#125;) =&gt; &#123;</span><br><span class="line">        console.log(`User selected: $&#123;answers[response]&#125;`)</span><br><span class="line">      &#125;)</span><br><span class="line"></span><br><span class="line">    //-------------------------------------------------------</span><br><span class="line">    // wc.executeJavaScript(`alert(&#x27;$&#123;params.selectionText&#125;&#x27;)`)</span><br><span class="line">  &#125;)</span><br><span class="line">  wc.openDevTools()</span><br><span class="line">  win.loadFile(&#x27;./index.html&#x27;)</span><br><span class="line">  winState.manage(win)</span><br><span class="line">  // globalShortcut.register(&#x27;G&#x27;, () =&gt; &#123;</span><br><span class="line">  //   console.log(&#x27;user&#x27;)</span><br><span class="line">  // &#125;)</span><br><span class="line">  //--------------------------------</span><br><span class="line">  globalShortcut.register(&#x27;CommandOrControl+Y&#x27;, () =&gt; &#123;</span><br><span class="line">    console.log(&#x27;user&#x27;)</span><br><span class="line">    globalShortcut.unregister(&#x27;CommandOrControl+Y&#x27;)</span><br><span class="line">  &#125;)</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></article><div class="post-copyright"><div class="post-copyright__author"><span class="post-copyright-meta">文章作者: </span><span class="post-copyright-info"><a href="https://xxiaomin.github.io">xxiaomin</a></span></div><div class="post-copyright__type"><span class="post-copyright-meta">文章链接: </span><span class="post-copyright-info"><a href="https://xxiaomin.github.io/2023/08/21/electron/five_mainProcessApi/">https://xxiaomin.github.io/2023/08/21/electron/five_mainProcessApi/</a></span></div><div class="post-copyright__notice"><span class="post-copyright-meta">版权声明: </span><span class="post-copyright-info">本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" target="_blank">CC BY-NC-SA 4.0</a> 许可协议。转载请注明来自 <a href="https://xxiaomin.github.io" target="_blank">XxiaoMin Blog</a>！</span></div></div><div class="tag_share"><div class="post-meta__tag-list"><a class="post-meta__tags" href="/tags/electron/">electron</a></div><div class="post_share"><div class="social-share" data-image="https://th.bing.com/th/id/R.99ccc237895a8ed6113302105b885646?rik=rcBH2c2j1Y%2fp4Q&amp;riu=http%3a%2f%2fi1.img.969g.com%2fdown%2fimgx2013%2f10%2f23%2f255_110719_818fe.jpg&amp;ehk=VAAweGx8R7XjZrI4lbja8%2fK%2bxLh1WTaiqTdZtiBtuZk%3d&amp;risl=&amp;pid=ImgRaw&amp;r=0" data-sites="facebook,twitter,wechat,weibo,qq"></div><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/butterfly-extsrc/sharejs/dist/css/share.min.css" media="print" onload="this.media='all'"><script src="https://cdn.jsdelivr.net/npm/butterfly-extsrc/sharejs/dist/js/social-share.min.js" defer></script></div></div><nav class="pagination-post" id="pagination"><div class="prev-post pull-left"><a href="/2023/08/23/Node_Express_MongoDB_Vue/one_createConfiguration_error/" title="识别不了vue-class-component问题"><img class="cover" src="https://th.bing.com/th/id/R.60b39c776e0044edba42210eab6a384b?rik=twYgal8UvPUzbg&amp;riu=http%3a%2f%2fimg.zcool.cn%2fcommunity%2f01cba958ad651ea801219c7720b880.jpg%401280w_1l_2o_100sh.png&amp;ehk=QdarRtRTiCYwnjTl4IEKGZuxLUuhToQPOZRbDO%2bDba8%3d&amp;risl=&amp;pid=ImgRaw&amp;r=0" onerror="onerror=null;src='/img/404.jpg'" alt="cover of previous post"><div class="pagination-info"><div class="label">上一篇</div><div class="prev_info">识别不了vue-class-component问题</div></div></a></div><div class="next-post pull-right"><a href="/2023/08/19/electron/four_mainProcessApi/" title="Electron-主进程Api - first"><img class="cover" src="https://gss0.baidu.com/9vo3dSag_xI4khGko9WTAnF6hhy/zhidao/pic/item/55e736d12f2eb938da8870c0d6628535e5dd6f1e.jpg" onerror="onerror=null;src='/img/404.jpg'" alt="cover of next post"><div class="pagination-info"><div class="label">下一篇</div><div class="next_info">Electron-主进程Api - first</div></div></a></div></nav><div class="relatedPosts"><div class="headline"><i class="fas fa-thumbs-up fa-fw"></i><span>相关推荐</span></div><div class="relatedPosts-list"><div><a href="/2023/08/16/electron/one_electron-basic/" title="electron-basic"><img class="cover" src="https://pic4.zhimg.com/v2-d31c20b0808136cb6fba690b4f099606_r.jpg?source=1940ef5c" alt="cover"><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2023-08-16</div><div class="title">electron-basic</div></div></a></div><div><a href="/2023/08/17/electron/two_mainProcess_renderingProcess/" title="Electron-主进程和渲染进程"><img class="cover" src="https://th.bing.com/th/id/R.ae86dd63fc61c4abe1a094520ed0eb2a?rik=P8ET4XdKAYdxJA&riu=http%3a%2f%2fp9.itc.cn%2fq_70%2fimages03%2f20200829%2f7ac70a9ad11e41fbaf81f3fb7be8a705.jpeg&ehk=OxLVZX%2bf7EvHDdj1GlzLP3IyYFHMN%2b%2fgMJHYcPT4Vmg%3d&risl=&pid=ImgRaw&r=0" alt="cover"><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2023-08-17</div><div class="title">Electron-主进程和渲染进程</div></div></a></div><div><a href="/2023/08/18/electron/three_mainProcess_renderingProcess/" title="Electron-主进程和渲染进程通信"><img class="cover" src="https://th.bing.com/th/id/R.912aaeddd144abeb8717815e41ff3846?rik=OfiauHWrXZHdpA&riu=http%3a%2f%2fi1.hdslb.com%2fbfs%2farchive%2f584572cf4da10fbb916b80aa56caeb7537384905.jpg&ehk=QSADQz%2bake8cpH6XMRLprzLh%2fK49P1eCpCy1y6m72vg%3d&risl=&pid=ImgRaw&r=0" alt="cover"><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2023-08-18</div><div class="title">Electron-主进程和渲染进程通信</div></div></a></div><div><a href="/2023/08/19/electron/four_mainProcessApi/" title="Electron-主进程Api - first"><img class="cover" src="https://gss0.baidu.com/9vo3dSag_xI4khGko9WTAnF6hhy/zhidao/pic/item/55e736d12f2eb938da8870c0d6628535e5dd6f1e.jpg" alt="cover"><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2023-08-19</div><div class="title">Electron-主进程Api - first</div></div></a></div></div></div></div><div class="aside-content" id="aside-content"><div class="card-widget card-info"><div class="is-center"><div class="avatar-img"><img src="https://tupian.qqw21.com/article/UploadPic/2020-7/202071523123939850.jpg" onerror="this.onerror=null;this.src='/img/friend_404.gif'" alt="avatar"/></div><div class="author-info__name">xxiaomin</div><div class="author-info__description">搞怪一点,生活才会有乐趣呀！</div></div><div class="card-info-data site-data is-center"><a href="/archives/"><div class="headline">文章</div><div class="length-num">27</div></a><a href="/tags/"><div class="headline">标签</div><div class="length-num">14</div></a><a href="/categories/"><div class="headline">分类</div><div class="length-num">13</div></a></div><a id="card-info-btn" href="https://xxiaomin.github.io/"><i class="fab fa-github"></i><span>Follow Me</span></a><div class="card-info-social-icons is-center"><a class="social-icon" href="https://github.com/xxiaomin" target="_blank" title="Github"><i class="fab fa-github"></i></a><a class="social-icon" href="/1218220208@qq.com" target="_blank" title="Email"><i class="fas fa-envelope"></i></a></div></div><div class="card-widget card-announcement"><div class="item-headline"><i class="fas fa-bullhorn fa-shake"></i><span>公告</span></div><div class="announcement_content">This is my Blog</div></div><div class="sticky_layout"><div class="card-widget" id="card-toc"><div class="item-headline"><i class="fas fa-stream"></i><span>目录</span><span class="toc-percentage"></span></div><div class="toc-content"><ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#dialog-%E5%AF%B9%E8%AF%9D%E6%A1%86"><span class="toc-number">1.</span> <span class="toc-text">dialog-对话框</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%BF%AB%E6%8D%B7%E9%94%AE-%E7%B3%BB%E7%BB%9F%E5%BF%AB%E6%8D%B7%E9%94%AE%EF%BC%88%E9%94%AE%E7%9B%98%EF%BC%89"><span class="toc-number">2.</span> <span class="toc-text">快捷键-系统快捷键（键盘）</span></a></li></ol></div></div><div class="card-widget card-recent-post"><div class="item-headline"><i class="fas fa-history"></i><span>最新文章</span></div><div class="aside-list"><div class="aside-list-item"><a class="thumbnail" href="/2023/08/23/Node_Express_MongoDB_Vue/one_createConfiguration_error/" title="识别不了vue-class-component问题"><img src="https://th.bing.com/th/id/R.60b39c776e0044edba42210eab6a384b?rik=twYgal8UvPUzbg&amp;riu=http%3a%2f%2fimg.zcool.cn%2fcommunity%2f01cba958ad651ea801219c7720b880.jpg%401280w_1l_2o_100sh.png&amp;ehk=QdarRtRTiCYwnjTl4IEKGZuxLUuhToQPOZRbDO%2bDba8%3d&amp;risl=&amp;pid=ImgRaw&amp;r=0" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="识别不了vue-class-component问题"/></a><div class="content"><a class="title" href="/2023/08/23/Node_Express_MongoDB_Vue/one_createConfiguration_error/" title="识别不了vue-class-component问题">识别不了vue-class-component问题</a><time datetime="2023-08-23T02:55:52.214Z" title="发表于 2023-08-23 10:55:52">2023-08-23</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2023/08/21/electron/five_mainProcessApi/" title="Electron-主进程Api - second"><img src="https://th.bing.com/th/id/R.99ccc237895a8ed6113302105b885646?rik=rcBH2c2j1Y%2fp4Q&amp;riu=http%3a%2f%2fi1.img.969g.com%2fdown%2fimgx2013%2f10%2f23%2f255_110719_818fe.jpg&amp;ehk=VAAweGx8R7XjZrI4lbja8%2fK%2bxLh1WTaiqTdZtiBtuZk%3d&amp;risl=&amp;pid=ImgRaw&amp;r=0" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="Electron-主进程Api - second"/></a><div class="content"><a class="title" href="/2023/08/21/electron/five_mainProcessApi/" title="Electron-主进程Api - second">Electron-主进程Api - second</a><time datetime="2023-08-21T02:39:37.088Z" title="发表于 2023-08-21 10:39:37">2023-08-21</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2023/08/19/electron/four_mainProcessApi/" title="Electron-主进程Api - first"><img src="https://gss0.baidu.com/9vo3dSag_xI4khGko9WTAnF6hhy/zhidao/pic/item/55e736d12f2eb938da8870c0d6628535e5dd6f1e.jpg" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="Electron-主进程Api - first"/></a><div class="content"><a class="title" href="/2023/08/19/electron/four_mainProcessApi/" title="Electron-主进程Api - first">Electron-主进程Api - first</a><time datetime="2023-08-19T01:58:21.021Z" title="发表于 2023-08-19 09:58:21">2023-08-19</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2023/08/18/electron/three_mainProcess_renderingProcess/" title="Electron-主进程和渲染进程通信"><img src="https://th.bing.com/th/id/R.912aaeddd144abeb8717815e41ff3846?rik=OfiauHWrXZHdpA&amp;riu=http%3a%2f%2fi1.hdslb.com%2fbfs%2farchive%2f584572cf4da10fbb916b80aa56caeb7537384905.jpg&amp;ehk=QSADQz%2bake8cpH6XMRLprzLh%2fK49P1eCpCy1y6m72vg%3d&amp;risl=&amp;pid=ImgRaw&amp;r=0" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="Electron-主进程和渲染进程通信"/></a><div class="content"><a class="title" href="/2023/08/18/electron/three_mainProcess_renderingProcess/" title="Electron-主进程和渲染进程通信">Electron-主进程和渲染进程通信</a><time datetime="2023-08-18T03:15:35.215Z" title="发表于 2023-08-18 11:15:35">2023-08-18</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2023/08/17/electron/two_mainProcess_renderingProcess/" title="Electron-主进程和渲染进程"><img src="https://th.bing.com/th/id/R.ae86dd63fc61c4abe1a094520ed0eb2a?rik=P8ET4XdKAYdxJA&amp;riu=http%3a%2f%2fp9.itc.cn%2fq_70%2fimages03%2f20200829%2f7ac70a9ad11e41fbaf81f3fb7be8a705.jpeg&amp;ehk=OxLVZX%2bf7EvHDdj1GlzLP3IyYFHMN%2b%2fgMJHYcPT4Vmg%3d&amp;risl=&amp;pid=ImgRaw&amp;r=0" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="Electron-主进程和渲染进程"/></a><div class="content"><a class="title" href="/2023/08/17/electron/two_mainProcess_renderingProcess/" title="Electron-主进程和渲染进程">Electron-主进程和渲染进程</a><time datetime="2023-08-17T01:12:45.377Z" title="发表于 2023-08-17 09:12:45">2023-08-17</time></div></div></div></div></div></div></main><footer id="footer" style="background-image: url('https://th.bing.com/th/id/R.99ccc237895a8ed6113302105b885646?rik=rcBH2c2j1Y%2fp4Q&amp;riu=http%3a%2f%2fi1.img.969g.com%2fdown%2fimgx2013%2f10%2f23%2f255_110719_818fe.jpg&amp;ehk=VAAweGx8R7XjZrI4lbja8%2fK%2bxLh1WTaiqTdZtiBtuZk%3d&amp;risl=&amp;pid=ImgRaw&amp;r=0')"><div id="footer-wrap"><div class="copyright">&copy;2023 By xxiaomin</div><div class="footer_custom_text">Glad to meet you</div></div></footer></div><div id="rightside"><div id="rightside-config-hide"><button id="readmode" type="button" title="阅读模式"><i class="fas fa-book-open"></i></button><button id="darkmode" type="button" title="浅色和深色模式转换"><i class="fas fa-adjust"></i></button><button id="hide-aside-btn" type="button" title="单栏和双栏切换"><i class="fas fa-arrows-alt-h"></i></button></div><div id="rightside-config-show"><button id="rightside_config" type="button" title="设置"><i class="fas fa-cog fa-spin"></i></button><button class="close" id="mobile-toc-button" type="button" title="目录"><i class="fas fa-list-ul"></i></button><button id="chat_btn" type="button" title="聊天"><i class="fas fa-sms"></i></button><button id="go-up" type="button" title="回到顶部"><span class="scroll-percent"></span><i class="fas fa-arrow-up"></i></button></div></div><div><script src="/js/utils.js"></script><script src="/js/main.js"></script><script src="https://cdn.jsdelivr.net/npm/@fancyapps/ui/dist/fancybox/fancybox.umd.min.js"></script><div class="js-pjax"></div><div><canvas id="snow" style="position:fixed;top:0;left:0;width:100%;height:100%;z-index:99999;pointer-events:none"></canvas></div><script>const notMobile = (!(navigator.userAgent.match(/(phone|pad|pod|iPhone|iPod|ios|iPad|Android|Mobile|BlackBerry|IEMobile|MQQBrowser|JUC|Fennec|wOSBrowser|BrowserNG|WebOS|Symbian|Windows Phone)/i)));</script><script async type="text/javascript" src="https://cdn.jsdelivr.net/gh/Candinya/Kratos-Rebirth@latest/source/js/snow.min.js"></script><script id="canvas_nest" defer="defer" color="159,135,207" opacity="0.7" zIndex="-1" count="300" mobile="false" src="https://cdn.jsdelivr.net/npm/butterfly-extsrc/dist/canvas-nest.min.js"></script><script src="https://cdn.jsdelivr.net/npm/butterfly-extsrc/dist/activate-power-mode.min.js"></script><script>POWERMODE.colorful = true;
+POWERMODE.shake = false;
+POWERMODE.mobile = false;
+document.body.addEventListener('input', POWERMODE);
+</script><script id="click-show-text" src="https://cdn.jsdelivr.net/npm/butterfly-extsrc/dist/click-show-text.min.js" data-mobile="false" data-text="Funny ~,Happy ~,Hello ~" data-fontsize="15px" data-random="true" async="async"></script><script async data-pjax src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script></div><script src="/live2dw/lib/L2Dwidget.min.js?094cbace49a39548bed64abff5988b05"></script><script>L2Dwidget.init({"pluginModelPath":"assets/","model":{"jsonPath":"/live2dw/assets/tororo.model.json"},"display":{"position":"left","width":270,"height":420,"hOffset":10,"vOffset":-80},"mobile":{"show":false},"rect":{"opacity":0.65},"log":false,"pluginJsPath":"lib/","pluginRootPath":"live2dw/","tagMode":false});</script></body></html>
